@@ -1,9 +1,10 @@
 ﻿@charset "utf-8";
 
 body{
- background-color:#ffffcc;
+ background-color:#ffff44;
  font-size:100%;
- font-family: "メイリオ",Consolas;
+ font-family: "メイリオ",Arial;
+ font-family: "ヒラギノ角ゴシック",Arial;
  }
 
 /*ul#header{
@@ -21,7 +22,7 @@ float:left;
 }
 
 #menu li a {
-background-color:#761010 ;
+background-color:#0000ff ;
 color:#ffffff ;
 display:block;
 width:192px; height:35px;
@@ -30,7 +31,7 @@ text-align:center;
 //text-decoration:none;
 }
 #menu li a:hover{
-background-color:#882222;
+background-color:#0000cc;
 }
 
 
