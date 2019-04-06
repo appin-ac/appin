@@ -1,0 +1,37 @@
+﻿@charset "utf-8";
+
+body{
+ background-color:#ffffff;
+ font-size:100%;
+ font-family: "MS Gothic",Consolas;
+ }
+
+/*ul#header{
+ width:960px;height:80px;
+}*/
+
+ul#menu{
+width:960px; height:50px;
+}
+
+#menu li{
+list-style-type:none;
+display:inline;
+float:left;
+}
+
+#menu li a {
+background-color:#000000 ;
+color:#ffffff ;
+display:block;
+width:192px; height:35px;
+padding:10px 0px 0px 0px;
+text-align:center;
+//text-decoration:none;
+}
+#menu li a:hover{
+background-color:#cccccc;
+}
+
+
+
