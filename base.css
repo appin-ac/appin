@@ -1,8 +1,9 @@
 ﻿@charset "utf-8";
 
 body{
- background-color:#ffff44;
+ background-color:#ffffc6;
  font-size:100%;
+ font-family: 'Roboto', sans-serif;
  font-family: "メイリオ",Arial;
  font-family: "ヒラギノ角ゴシック",Arial;
  }
