@@ -2,7 +2,7 @@
 
 body{
  background-color:#ffffff;
- font-size:100%;
+ font-size:130%;
  font-family: "MS Gothic",Consolas;
  }
 
@@ -33,5 +33,31 @@ text-align:center;
 background-color:#cccccc;
 }
 
-
-
+.box3 {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #2c2c2f;
+    background: #cde4ff;/*背景色*/
+}
+.box3 p {
+    margin: 0; 
+    padding: 0;
+}
+table , td, th {
+	border: 1px solid #595959;
+	border-collapse: collapse;
+}
+td, th {
+	padding: 3px;
+	width: 30px;
+	height: 25px;
+}
+th {
+	background: #f0e6cc;
+}
+.even {
+	background: #fbf8f0;
+}
+.odd {
+	background: #fefcf9;
+}
