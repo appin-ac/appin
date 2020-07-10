@@ -6,7 +6,9 @@ body{
  font-family: "メイリオ",Arial;
  font-family: "ヒラギノ角ゴシック",Arial;
  }
-
+p{
+    margin: 0 2%;
+}
 /*ul#header{
  width:960px;height:80px;
 }*/
@@ -23,7 +25,7 @@ float:left;
 }
 
 #menu li a {
-background-color:#0000ff ;
+background-color:#0000cc ;
 color:#ffffff ;
 display:block;
 width:192px; height:35px;
@@ -38,7 +40,7 @@ background-color:#0000cc;
     padding: 1% 1%;
     margin: 0 3%;
     color: #2c2c2f;
-    background: #ffdfdf;/*背景色*/
+    background: #ffdddd;/*背景色*/
 }
 .box1 p {
     margin: 0; 
@@ -48,7 +50,7 @@ background-color:#0000cc;
     padding: 1% 1%;
     margin: 0 3%;
     color: #2c2c2f;
-    background: #d8ffb6;/*背景色*/
+    background: #ddffdd;/*背景色*/
 }
 .box2 p {
     margin: 0; 
@@ -58,7 +60,7 @@ background-color:#0000cc;
     padding: 1% 1%;
     margin: 0 3%;
     color: #2c2c2f;
-    background: #f5fffa;/*背景色*/
+    background: #ddddff;/*背景色*/
 }
 .box3 p {
     margin: 0; 
