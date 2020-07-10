@@ -5,9 +5,11 @@ body{
  font-size:140%;
  font-family: "メイリオ",Arial;
  font-family: "ヒラギノ角ゴシック",Arial;
+
+ padding: 2% 2%;
  }
 p{
-    margin: 0 2%;
+    
 }
 /*ul#header{
  width:960px;height:80px;
