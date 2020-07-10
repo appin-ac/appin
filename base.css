@@ -1,8 +1,8 @@
 ﻿@charset "utf-8";
 
 body{
- background-color:#ffffc9;
- font-size:120%;
+ background-color:#ffffff;
+ font-size:140%;
  font-family: "メイリオ",Arial;
  font-family: "ヒラギノ角ゴシック",Arial;
  }
@@ -36,7 +36,7 @@ background-color:#0000cc;
 }
 .box1 {
     padding: 1% 1%;
-    margin: 0 8%;
+    margin: 0 3%;
     color: #2c2c2f;
     background: #ffdfdf;/*背景色*/
 }
@@ -46,7 +46,7 @@ background-color:#0000cc;
 }
 .box2 {
     padding: 1% 1%;
-    margin: 0 5%;
+    margin: 0 3%;
     color: #2c2c2f;
     background: #d8ffb6;/*背景色*/
 }
