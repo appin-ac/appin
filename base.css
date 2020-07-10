@@ -38,7 +38,7 @@ background-color:#0000cc;
     padding: 1% 1%;
     margin: 2% 0;
     color: #2c2c2f;
-    background: ##ffdfdf;/*背景色*/
+    background: #ffdfdf;/*背景色*/
 }
 .box1 p {
     margin: 0; 
@@ -46,7 +46,7 @@ background-color:#0000cc;
 }
 .box2 {
     padding: 1% 1%;
-    margin: 2% 0;
+    margin: 5% 0;
     color: #2c2c2f;
     background: #d8ffb6;/*背景色*/
 }
@@ -56,7 +56,7 @@ background-color:#0000cc;
 }
 .box3 {
     padding: 1% 1%;
-    margin: 2% 0;
+    margin: 8% 0;
     color: #2c2c2f;
     background: #f5fffa;/*背景色*/
 }
