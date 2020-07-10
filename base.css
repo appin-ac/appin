@@ -34,9 +34,29 @@ text-align:center;
 #menu li a:hover{
 background-color:#0000cc;
 }
+.box1 {
+    padding: 1% 1%;
+    margin: 2% 0;
+    color: #2c2c2f;
+    background: ##ffdfdf;/*背景色*/
+}
+.box1 p {
+    margin: 0; 
+    padding: 0;
+}
+.box2 {
+    padding: 1% 1%;
+    margin: 2% 0;
+    color: #2c2c2f;
+    background: #d8ffb6;/*背景色*/
+}
+.box2 p {
+    margin: 0; 
+    padding: 0;
+}
 .box3 {
-    padding: 0.5em 1em;
-    margin: 2em 0;
+    padding: 1% 1%;
+    margin: 2% 0;
     color: #2c2c2f;
     background: #f5fffa;/*背景色*/
 }
