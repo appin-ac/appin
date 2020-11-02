@@ -13229,7 +13229,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">F</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./N46&quot;</span><span class="p">)</span>
@@ -13258,7 +13258,7 @@ div#notebook {
             <span class="n">subf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kekka</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
             <span class="n">Ewords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kekka</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">NDATA</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subf</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">NDATA</span><span class="p">[</span><span class="mi">8</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">NDATA</span><span class="p">[</span><span class="mi">8</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -13275,7 +13275,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;ロシア&#39;, &#39;貨物&#39;, &#39;ゆっくり&#39;, &#39;通り過ぎる&#39;, &#39;その&#39;]
+<pre>[&#39;ロシア&#39;, &#39;貨物&#39;, &#39;ゆっくり&#39;, &#39;通り過ぎる&#39;, &#39;その&#39;, &#39;コンテナ&#39;, &#39;乗せる&#39;, &#39;どこ&#39;, &#39;向かう&#39;, &#39;だ&#39;]
 </pre>
 </div>
 </div>
@@ -13287,16 +13287,23 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>次に欅坂46の楽曲でも同様に特徴語を抽出する</p>
-<p>以下の例は「アンビバレント」に含まれる語である</p>
-<p>この様に曲によって特徴語の数は大きく異なる</p>
+<p>事前に歌詞のデータを処理して保存したので，それを読み込み，形態素解析する．</p>
+<p>歌詞データの処理については別ファイル参照</p>
+<p>形態素分析は，まず，歌詞を品詞分解することから始まる</p>
+<p>ここで「の」や「が」といった語は，いずれの歌詞にも多くあらわれるため
+その曲の特徴を表しているとは考えにくい．今回の解析では歌詞の意味を考慮して
+類似性を計算することを最終目標としている．</p>
+<p>さらに活用する単語（動詞，形容詞など）は活用形が異なるだけで異なる単語
+と認識されてしまうと，本質的ではない類似度となってしまう．そのため活用する
+語はすべて基本形にして，これらの歌詞において特徴的な語のリストを作成した．</p>
+<p>例えば上の例は乃木坂46の2期生楽曲「アナスターシャ」の特徴的な語の一部</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">F</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./K46&quot;</span><span class="p">)</span>
@@ -13325,7 +13332,7 @@ div#notebook {
             <span class="n">subf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kekka</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
             <span class="n">Ewords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kekka</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">KDATA</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subf</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">KDATA</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">KDATA</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -13342,7 +13349,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;あいつ&#39;, &#39;ああ&#39;, &#39;だって&#39;, &#39;言う&#39;, &#39;こいつ&#39;]
+<pre>[&#39;あいつ&#39;, &#39;ああ&#39;, &#39;だって&#39;, &#39;言う&#39;, &#39;こいつ&#39;, &#39;こう&#39;, &#39;だ&#39;, &#39;って&#39;, &#39;言う&#39;, &#39;差出人&#39;]
 </pre>
 </div>
 </div>
@@ -13360,13 +13367,12 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">F</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./H46&quot;</span><span class="p">)</span>
 <span class="n">T</span><span class="o">=</span><span class="p">[]</span>
 <span class="n">HDATA</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">Ewords</span><span class="o">=</span><span class="p">[]</span>
 <span class="c1"># ※txtファイルの格納場所は各自変えてください</span>
 <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">F</span><span class="p">:</span>
     <span class="n">t</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./H46/&quot;</span><span class="o">+</span><span class="n">f</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
@@ -13384,12 +13390,10 @@ div#notebook {
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="n">n_of_w</span><span class="o">-</span><span class="mi">2</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">kekka</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">7</span><span class="p">]</span><span class="o">!=</span> <span class="s2">&quot;&quot;</span> <span class="ow">and</span> <span class="n">kekka</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">7</span><span class="p">]</span><span class="o">!=</span> <span class="s2">&quot;*&quot;</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">kekka</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
             <span class="n">subf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kekka</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">7</span><span class="p">])</span>
-            <span class="n">Ewords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kekka</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">7</span><span class="p">])</span>
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">kekka</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[()]&quot;</span><span class="p">,</span><span class="n">kekka</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]):</span>
             <span class="n">subf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kekka</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-            <span class="n">Ewords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kekka</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">HDATA</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subf</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">HDATA</span><span class="p">[</span><span class="mi">17</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">HDATA</span><span class="p">[</span><span class="mi">17</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>
 <span class="n">ADATA</span><span class="o">=</span><span class="p">[</span><span class="n">NDATA</span><span class="p">,</span><span class="n">KDATA</span><span class="p">,</span><span class="n">HDATA</span><span class="p">]</span>
 </pre></div>
 
@@ -13407,7 +13411,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;背中&#39;, &#39;不思議&#39;, &#39;いつも&#39;, &#39;語る&#39;, &#39;てる&#39;]
+<pre>[&#39;背中&#39;, &#39;不思議&#39;, &#39;いつも&#39;, &#39;語る&#39;, &#39;てる&#39;, &#39;ちゃんと&#39;, &#39;言葉&#39;, &#39;する&#39;, &#39;より&#39;, &#39;正直&#39;]
 </pre>
 </div>
 </div>
@@ -13427,48 +13431,21 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Allwords</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">Ewords</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Allwords</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>1956
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>ここでは曲と曲の類似度を以下の式によって定義して計算した</p>
+<p>曲$A$と曲$B$の類似度$=$曲$A$と曲$B$の共通する単語の個数$\div($曲$A$の語数$+$曲$B$の語数$)$</p>
+<p>$A=$「あ　い　い　い　う　お」，$B=$「あ　あ　あ　い　い　え　お」</p>
+<p>ならば共通するのは「あ」1個，「い」2個，「お」1個の合計4つ</p>
+<p>類似度は$4\div (6+7)=0.307\cdots$</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#1N 2K 3F</span>
@@ -13514,16 +13491,16 @@ div#notebook {
         <span class="n">AVec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NVec</span><span class="p">)</span>
         <span class="c1">#print(AVec[g][0:5])</span>
 
-    <span class="n">ndo</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">AVec</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">18</span><span class="p">])</span><span class="o">/</span><span class="mi">18</span>
+    <span class="n">ndo</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">AVec</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">])</span><span class="o">/</span><span class="mi">20</span>
     <span class="n">kdo</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">AVec</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span><span class="o">/</span><span class="mi">10</span>
     <span class="n">hdo</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">AVec</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">8</span><span class="p">])</span><span class="o">/</span><span class="mi">8</span>
     <span class="n">hantei</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
     <span class="k">if</span> <span class="n">ndo</span> <span class="o">&gt;</span> <span class="n">kdo</span> <span class="ow">and</span> <span class="n">ndo</span> <span class="o">&gt;</span> <span class="n">hdo</span><span class="p">:</span>
         <span class="n">hantei</span><span class="o">=</span><span class="s2">&quot; 判定：乃木坂 &quot;</span>
     <span class="k">elif</span> <span class="n">kdo</span> <span class="o">&gt;</span> <span class="n">ndo</span> <span class="ow">and</span> <span class="n">kdo</span> <span class="o">&gt;</span> <span class="n">hdo</span><span class="p">:</span>
-        <span class="n">hantei</span><span class="o">=</span><span class="s2">&quot; 判定：欅坂  &quot;</span>
+        <span class="n">hantei</span><span class="o">=</span><span class="s2">&quot; 判定：欅坂　 &quot;</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">hantei</span><span class="o">=</span><span class="s2">&quot; 判定：日向坂  &quot;</span>
+        <span class="n">hantei</span><span class="o">=</span><span class="s2">&quot; 判定：日向坂 &quot;</span>
         
     <span class="k">return</span> <span class="n">Llist</span><span class="p">[</span><span class="n">typ</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">p</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">+</span><span class="n">hantei</span><span class="o">+</span><span class="s2">&quot;乃木坂度 &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">ndo</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="s2">&quot;　欅坂度 &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">kdo</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="s2">&quot;　日向坂度 &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">hdo</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
     
@@ -13537,8 +13514,9 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>それぞれ，乃木坂度，欅坂度，日向坂度を算出し比較して結果を出力する関数を定義した．</p>
-<p>このAIの精度を知るには，坂道の曲が正しる分類されるかを見ればよい</p>
+<p>この定義で計算した乃木坂の各曲との類似度を大きい順に並べその上位いくつかの平均を乃木坂度とした．</p>
+<p>ただし，この「いくつか」は適切に定めなければならず，基本的には各グループの曲数に比例するが，曲の歌詞のばらつきが一様でないため，調整を行った．</p>
+<p>このAIの精度を知るには，坂道の曲が正しく分類されるかを見ればよい</p>
 <p>そのためすでに上の関数は，坂道の曲を分類する関数となっている</p>
 <p>calkNKH(グループの番号，曲の番号)となっているので実際に実行した結果が下である</p>
 
@@ -13547,7 +13525,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">calcNKH</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">111</span><span class="p">)</span>
@@ -13563,13 +13541,13 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[31]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;空扉\n 判定：乃木坂 乃木坂度 74.32\u3000欅坂度 73.26\u3000日向坂度 73.17\n&#39;</pre>
+<pre>&#39;空扉\n 判定：乃木坂 乃木坂度 74.09\u3000欅坂度 73.26\u3000日向坂度 73.17\n&#39;</pre>
 </div>
 
 </div>
@@ -13589,7 +13567,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">calcNKH</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">105</span><span class="p">)</span>
@@ -13605,13 +13583,13 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[32]:</div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;世界で一番 孤独なLover\n 判定：欅坂  乃木坂度 91.38\u3000欅坂度 94.83\u3000日向坂度 92.02\n&#39;</pre>
+<pre>&#39;世界で一番 孤独なLover\n 判定：欅坂\u3000 乃木坂度 91.11\u3000欅坂度 94.83\u3000日向坂度 92.02\n&#39;</pre>
 </div>
 
 </div>
@@ -13624,548 +13602,14 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>乃木坂46「世界で一番孤独なLover」は欅坂に似ているという判定結果になった</p>
-<p>比較的直感とも合致すると言えるだろう</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>欅坂46「黒い羊」は欅坂の判定となった</p>
-<p>もちろん乃木坂などに分類される曲もある</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>日向坂46「アザトカワイイ」は欅坂判定？</p>
+<h1 id="&#20840;&#26354;&#12434;&#20877;&#20998;&#39006;">&#20840;&#26354;&#12434;&#20877;&#20998;&#39006;<a class="anchor-link" href="#&#20840;&#26354;&#12434;&#20877;&#20998;&#39006;">&#182;</a></h1><p>全ての曲をどのグループに近いのか再分類してみた．</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">text_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;Nkekka.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;wt&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ADATA</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">calcNKH</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">))</span>
-<span class="c1">#text_file.close()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>I&#39;m out
- 判定：乃木坂 乃木坂度 83.03　欅坂度 81.25　日向坂度 81.82
-
-青空が違う
- 判定：欅坂  乃木坂度 94.4　欅坂度 95.94　日向坂度 95.07
-
-危なっかしい計画
- 判定：日向坂  乃木坂度 105.72　欅坂度 117.71　日向坂度 118.45
-
-アンビバレント
- 判定：欅坂  乃木坂度 84.33　欅坂度 96.53　日向坂度 96.16
-
-1行だけのエアメール
- 判定：乃木坂 乃木坂度 55.31　欅坂度 55.02　日向坂度 53.2
-
-イマニミテイロ
- 判定：日向坂  乃木坂度 90.53　欅坂度 89.08　日向坂度 91.19
-
-永遠の白線
- 判定：日向坂  乃木坂度 86.53　欅坂度 86.87　日向坂度 88.39
-
-エキセントリック
- 判定：日向坂  乃木坂度 103.05　欅坂度 112.76　日向坂度 114.54
-
-AM1:27
- 判定：欅坂  乃木坂度 94.62　欅坂度 97.29　日向坂度 95.75
-
-おいで夏の境界線
- 判定：欅坂  乃木坂度 89.1　欅坂度 92.09　日向坂度 90.28
-
-大人は信じてくれない
- 判定：乃木坂 乃木坂度 66.6　欅坂度 65.81　日向坂度 64.94
-
-音楽室に片想い
- 判定：乃木坂 乃木坂度 57.99　欅坂度 57.56　日向坂度 55.79
-
-風に吹かれても
- 判定：欅坂  乃木坂度 95.9　欅坂度 101.4　日向坂度 98.05
-
-語るなら未来を…
- 判定：日向坂  乃木坂度 82.31　欅坂度 82.3　日向坂度 83.29
-
-角を曲がる
- 判定：欅坂  乃木坂度 98.33　欅坂度 101.77　日向坂度 99.66
-
-カレイドスコープ
- 判定：乃木坂 乃木坂度 66.08　欅坂度 66.04　日向坂度 64.55
-
-ガラスを割れ！
- 判定：欅坂  乃木坂度 98.51　欅坂度 103.45　日向坂度 101.12
-
-キミガイナイ
- 判定：欅坂  乃木坂度 98.26　欅坂度 102.4　日向坂度 99.67
-
-君をもう探さない
- 判定：欅坂  乃木坂度 89.38　欅坂度 89.57　日向坂度 89.06
-
-黒い羊
- 判定：欅坂  乃木坂度 96.94　欅坂度 109.1　日向坂度 108.79
-
-結局、じゃあねしか言えない
- 判定：欅坂  乃木坂度 104.93　欅坂度 109.78　日向坂度 107.84
-
-月曜日の朝、スカートを切られた
- 判定：日向坂  乃木坂度 88.76　欅坂度 89.26　日向坂度 89.99
-
-ここにない足跡
- 判定：乃木坂 乃木坂度 78.56　欅坂度 76.89　日向坂度 77.4
-
-コンセントレーション
- 判定：欅坂  乃木坂度 92.26　欅坂度 98.05　日向坂度 94.34
-
-こんな整列を誰がさせるのか？
- 判定：欅坂  乃木坂度 91.82　欅坂度 93.24　日向坂度 92.94
-
-ごめんね クリスマス
- 判定：日向坂  乃木坂度 76.96　欅坂度 77.02　日向坂度 77.13
-
-再生する細胞
- 判定：乃木坂 乃木坂度 67.14　欅坂度 66.45　日向坂度 65.0
-
-最前列へ
- 判定：乃木坂 乃木坂度 80.19　欅坂度 78.46　日向坂度 79.16
-
-サイレントマジョリティー
- 判定：日向坂  乃木坂度 81.14　欅坂度 81.79　日向坂度 82.34
-
-砂塵
- 判定：乃木坂 乃木坂度 88.19　欅坂度 87.83　日向坂度 87.96
-
-302号室
- 判定：日向坂  乃木坂度 83.39　欅坂度 82.6　日向坂度 83.6
-
-渋谷からPARCOが消えた日
- 判定：乃木坂 乃木坂度 84.29　欅坂度 82.77　日向坂度 83.01
-
-渋谷川
- 判定：欅坂  乃木坂度 85.22　欅坂度 88.45　日向坂度 85.79
-
-少女には戻れない
- 判定：乃木坂 乃木坂度 66.05　欅坂度 65.62　日向坂度 64.51
-
-自分の棺
- 判定：乃木坂 乃木坂度 64.48　欅坂度 64.05　日向坂度 62.17
-
-10月のプールに飛び込んだ
- 判定：日向坂  乃木坂度 91.22　欅坂度 91.63　日向坂度 92.19
-
-Student Dance
- 判定：乃木坂 乃木坂度 70.58　欅坂度 70.08　日向坂度 69.1
-
-制服と太陽
- 判定：日向坂  乃木坂度 84.28　欅坂度 83.19　日向坂度 85.09
-
-世界には愛しかない
- 判定：欅坂  乃木坂度 101.77　欅坂度 105.54　日向坂度 102.9
-
-ゼンマイ仕掛けの夢
- 判定：乃木坂 乃木坂度 75.2　欅坂度 73.6　日向坂度 73.32
-
-太陽は見上げる人を選ばない
- 判定：欅坂  乃木坂度 96.48　欅坂度 97.06　日向坂度 96.75
-
-W-KEYAKIZAKAの詩
- 判定：日向坂  乃木坂度 86.99　欅坂度 87.2　日向坂度 88.64
-
-誰がその鐘を鳴らすのか？
- 判定：欅坂  乃木坂度 99.96　欅坂度 105.01　日向坂度 103.93
-
-チューニング
- 判定：乃木坂 乃木坂度 73.3　欅坂度 71.94　日向坂度 70.98
-
-沈黙が愛なら
- 判定：欅坂  乃木坂度 96.11　欅坂度 98.8　日向坂度 95.65
-
-手を繋いで帰ろうか
- 判定：欅坂  乃木坂度 97.45　欅坂度 101.07　日向坂度 98.87
-
-Deadline
- 判定：乃木坂 乃木坂度 65.93　欅坂度 65.22　日向坂度 63.44
-
-東京タワーはどこから見える?
- 判定：日向坂  乃木坂度 85.14　欅坂度 83.59　日向坂度 85.23
-
-夏の花は向日葵だけじゃない
- 判定：乃木坂 乃木坂度 69.41　欅坂度 68.85　日向坂度 67.53
-
-波打ち際を走らないか？
- 判定：乃木坂 乃木坂度 67.68　欅坂度 67.6　日向坂度 65.52
-
-猫の名前
- 判定：欅坂  乃木坂度 97.76　欅坂度 101.8　日向坂度 98.86
-
-乗り遅れたバス
- 判定：日向坂  乃木坂度 81.84　欅坂度 81.92　日向坂度 82.77
-
-Nobody
- 判定：乃木坂 乃木坂度 76.44　欅坂度 74.97　日向坂度 75.34
-
-半分の記憶
- 判定：欅坂  乃木坂度 92.0　欅坂度 92.0　日向坂度 91.66
-
-バスルームトラベル
- 判定：欅坂  乃木坂度 90.43　欅坂度 91.3　日向坂度 91.08
-
-バレエと少年
- 判定：乃木坂 乃木坂度 66.33　欅坂度 66.3　日向坂度 64.66
-
-日が昇るまで
- 判定：乃木坂 乃木坂度 73.9　欅坂度 73.07　日向坂度 72.25
-
-否定した未来
- 判定：乃木坂 乃木坂度 83.63　欅坂度 81.84　日向坂度 82.09
-
-100年待てば
- 判定：日向坂  乃木坂度 88.82　欅坂度 88.98　日向坂度 89.65
-
-避雷針
- 判定：日向坂  乃木坂度 109.0　欅坂度 119.18　日向坂度 120.52
-
-ヒールの高さ
- 判定：乃木坂 乃木坂度 78.2　欅坂度 77.46　日向坂度 76.96
-
-不協和音
- 判定：欅坂  乃木坂度 92.69　欅坂度 96.24　日向坂度 93.73
-
-二人セゾン
- 判定：欅坂  乃木坂度 93.09　欅坂度 93.37　日向坂度 93.16
-
-Footsteps
- 判定：欅坂  乃木坂度 96.6　欅坂度 100.98　日向坂度 98.54
-
-微笑みが悲しい
- 判定：乃木坂 乃木坂度 75.72　欅坂度 74.66　日向坂度 73.11
-
-僕たちの戦争
- 判定：日向坂  乃木坂度 93.07　欅坂度 94.66　日向坂度 95.05
-
-ボブディランは返さない
- 判定：乃木坂 乃木坂度 71.67　欅坂度 70.68　日向坂度 70.56
-
-また会ってください
- 判定：乃木坂 乃木坂度 83.59　欅坂度 81.92　日向坂度 81.37
-
-未熟な怒り
- 判定：乃木坂 乃木坂度 76.13　欅坂度 74.83　日向坂度 74.56
-
-耳に落ちる涙
- 判定：乃木坂 乃木坂度 80.97　欅坂度 80.41　日向坂度 79.57
-
-もう森へ帰ろうか？
- 判定：乃木坂 乃木坂度 81.19　欅坂度 80.85　日向坂度 80.19
-
-山手線
- 判定：欅坂  乃木坂度 63.94　欅坂度 64.52　日向坂度 62.28
-
-夕陽1/3
- 判定：乃木坂 乃木坂度 88.26　欅坂度 85.99　日向坂度 88.04
-
-夜明けの孤独
- 判定：乃木坂 乃木坂度 57.15　欅坂度 56.39　日向坂度 54.87
-
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
-<span class="ansi-red-intense-fg ansi-bold">IndexError</span>                                Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-33-bdf3377c88a3&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">      1</span> text_file <span class="ansi-yellow-intense-fg ansi-bold">=</span> open<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;Nkekka.txt&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#34;wt&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">      2</span> <span class="ansi-green-intense-fg ansi-bold">for</span> i <span class="ansi-green-intense-fg ansi-bold">in</span> range<span class="ansi-yellow-intense-fg ansi-bold">(</span>len<span class="ansi-yellow-intense-fg ansi-bold">(</span>ADATA<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-intense-fg ansi-bold">----&gt; 3</span><span class="ansi-yellow-intense-fg ansi-bold">     </span>print<span class="ansi-yellow-intense-fg ansi-bold">(</span>calcNKH<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">2</span><span class="ansi-yellow-intense-fg ansi-bold">,</span>i<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">      4</span> <span class="ansi-red-intense-fg ansi-bold">#text_file.close()</span>
-
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-30-6a6924064f80&gt;</span> in <span class="ansi-cyan-fg">calcNKH</span><span class="ansi-blue-intense-fg ansi-bold">(typ, p)</span>
-<span class="ansi-green-fg">     24</span>                 i<span class="ansi-yellow-intense-fg ansi-bold">+=</span><span class="ansi-cyan-intense-fg ansi-bold">1</span>
-<span class="ansi-green-fg">     25</span>             cnt<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">;</span>
-<span class="ansi-green-intense-fg ansi-bold">---&gt; 26</span><span class="ansi-yellow-intense-fg ansi-bold">             </span>L<span class="ansi-yellow-intense-fg ansi-bold">=</span>list<span class="ansi-yellow-intense-fg ansi-bold">(</span>set<span class="ansi-yellow-intense-fg ansi-bold">(</span>ADATA<span class="ansi-yellow-intense-fg ansi-bold">[</span>g<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">[</span>i<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">+</span>Now<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">     27</span>             A<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">*</span>len<span class="ansi-yellow-intense-fg ansi-bold">(</span>L<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">     28</span>             <span class="ansi-green-intense-fg ansi-bold">for</span> j <span class="ansi-green-intense-fg ansi-bold">in</span> range<span class="ansi-yellow-intense-fg ansi-bold">(</span>len<span class="ansi-yellow-intense-fg ansi-bold">(</span>ADATA<span class="ansi-yellow-intense-fg ansi-bold">[</span>g<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">[</span>i<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-
-<span class="ansi-red-intense-fg ansi-bold">IndexError</span>: list index out of range</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#text_file = open(&quot;Nkekka.txt&quot;, &quot;wt&quot;)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ADATA</span><span class="p">[</span><span class="mi">2</span><span class="p">])):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">calcNKH</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">))</span>
-<span class="c1">#text_file.close()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>アザトカワイイ
- 判定：日向坂  乃木坂度 85.08　欅坂度 85.75　日向坂度 85.89
-
-居心地悪く、大人になった
- 判定：日向坂  乃木坂度 83.44　欅坂度 83.88　日向坂度 84.39
-
-一番好きだとみんなに言っていた小説のタイトルを思い出せない
- 判定：欅坂  乃木坂度 96.79　欅坂度 109.24　日向坂度 104.88
-
-イマニミテイロ
- 判定：日向坂  乃木坂度 90.53　欅坂度 89.08　日向坂度 91.19
-
-おいで夏の境界線
- 判定：欅坂  乃木坂度 89.1　欅坂度 92.09　日向坂度 90.28
-
-男友達だから
- 判定：日向坂  乃木坂度 82.91　欅坂度 83.18　日向坂度 84.4
-
-川は流れる
- 判定：欅坂  乃木坂度 95.3　欅坂度 96.14　日向坂度 94.83
-
-期待していない自分
- 判定：乃木坂 乃木坂度 71.74　欅坂度 70.56　日向坂度 70.99
-
-キツネ
- 判定：日向坂  乃木坂度 90.23　欅坂度 89.81　日向坂度 90.37
-
-君に話しておきたいこと
- 判定：日向坂  乃木坂度 87.62　欅坂度 88.59　日向坂度 88.81
-
-君のため何ができるだろう
- 判定：欅坂  乃木坂度 93.33　欅坂度 99.53　日向坂度 96.65
-
-キュン
- 判定：欅坂  乃木坂度 97.69　欅坂度 104.71　日向坂度 100.84
-
-キレイになりたい
- 判定：欅坂  乃木坂度 87.55　欅坂度 87.98　日向坂度 87.97
-
-Cage
- 判定：欅坂  乃木坂度 96.81　欅坂度 109.85　日向坂度 104.27
-
-この夏をジャムにしよう
- 判定：欅坂  乃木坂度 95.64　欅坂度 96.28　日向坂度 95.02
-
-こんな整列を誰がさせるのか？
- 判定：欅坂  乃木坂度 91.82　欅坂度 93.24　日向坂度 92.94
-
-こんなに好きになっちゃっていいの？
- 判定：欅坂  乃木坂度 88.68　欅坂度 95.93　日向坂度 92.65
-
-最前列へ
- 判定：乃木坂 乃木坂度 80.19　欅坂度 78.46　日向坂度 79.16
-
-三輪車に乗りたい
- 判定：欅坂  乃木坂度 86.04　欅坂度 86.09　日向坂度 85.71
-
-車輪が軋むように君が泣く
- 判定：乃木坂 乃木坂度 74.67　欅坂度 72.77　日向坂度 72.62
-
-See Through
- 判定：欅坂  乃木坂度 93.68　欅坂度 102.69　日向坂度 101.01
-
-JOYFUL LOVE
- 判定：日向坂  乃木坂度 89.12　欅坂度 89.92　日向坂度 89.97
-
-好きということは…
- 判定：日向坂  乃木坂度 89.48　欅坂度 89.49　日向坂度 89.59
-
-青春の馬
- 判定：欅坂  乃木坂度 98.69　欅坂度 104.34　日向坂度 100.91
-
-線香花火が消えるまで
- 判定：欅坂  乃木坂度 98.8　欅坂度 102.92　日向坂度 99.27
-
-それでも歩いてる
- 判定：欅坂  乃木坂度 96.28　欅坂度 97.0　日向坂度 96.09
-
-ソンナコトナイヨ
- 判定：欅坂  乃木坂度 87.29　欅坂度 88.19　日向坂度 87.77
-
-ただがむしゃらに
- 判定：乃木坂 乃木坂度 70.36　欅坂度 69.01　日向坂度 67.97
-
-抱きしめてやる
- 判定：乃木坂 乃木坂度 78.3　欅坂度 77.26　日向坂度 77.92
-
-Dash&amp;Rush
- 判定：欅坂  乃木坂度 95.19　欅坂度 99.34　日向坂度 95.94
-
-誰よりも高く跳べ!
- 判定：日向坂  乃木坂度 89.45　欅坂度 89.52　日向坂度 90.15
-
-沈黙が愛なら
- 判定：欅坂  乃木坂度 96.11　欅坂度 98.61　日向坂度 95.65
-
-沈黙した恋人よ
- 判定：日向坂  乃木坂度 91.14　欅坂度 91.66　日向坂度 92.02
-
-ときめき草
- 判定：日向坂  乃木坂度 81.59　欅坂度 80.93　日向坂度 81.61
-
-どうして雨だと言ったんだろう？
- 判定：欅坂  乃木坂度 97.94　欅坂度 102.5　日向坂度 98.77
-
-ドレミソラシド
- 判定：欅坂  乃木坂度 91.64　欅坂度 106.1　日向坂度 99.7
-
-ナゼー
- 判定：欅坂  乃木坂度 90.58　欅坂度 93.86　日向坂度 91.14
-
-夏色のミュール
- 判定：乃木坂 乃木坂度 76.19　欅坂度 74.89　日向坂度 73.49
-
-ノックをするな！
- 判定：日向坂  乃木坂度 89.16　欅坂度 89.05　日向坂度 90.32
-
-NO WAR in the future
- 判定：乃木坂 乃木坂度 81.63　欅坂度 80.69　日向坂度 80.92
-
-ハッピーオーラ
- 判定：乃木坂 乃木坂度 72.47　欅坂度 71.53　日向坂度 70.59
-
-ハロウィンのカボチャが割れた
- 判定：欅坂  乃木坂度 92.46　欅坂度 97.25　日向坂度 93.44
-
-半分の記憶
- 判定：欅坂  乃木坂度 92.0　欅坂度 92.0　日向坂度 91.66
-
-日向坂
- 判定：日向坂  乃木坂度 87.22　欅坂度 87.06　日向坂度 87.81
-
-ひらがなけやき
- 判定：欅坂  乃木坂度 62.7　欅坂度 62.76　日向坂度 60.61
-
-ひらがなで恋したい
- 判定：欅坂  乃木坂度 90.91　欅坂度 91.72　日向坂度 91.55
-
-Footsteps
- 判定：欅坂  乃木坂度 96.6　欅坂度 100.98　日向坂度 99.98
-
-ホントの時間
- 判定：欅坂  乃木坂度 104.47　欅坂度 113.93　日向坂度 109.86
-
-僕たちは付き合っている
- 判定：欅坂  乃木坂度 93.85　欅坂度 95.21　日向坂度 94.36
-
-My god
- 判定：乃木坂 乃木坂度 70.08　欅坂度 69.3　日向坂度 67.97
-
-My fans
- 判定：欅坂  乃木坂度 97.14　欅坂度 99.39　日向坂度 97.29
-
-まさか 偶然…
- 判定：乃木坂 乃木坂度 75.6　欅坂度 73.57　日向坂度 73.22
-
-窓を開けなくても
- 判定：乃木坂 乃木坂度 70.34　欅坂度 69.36　日向坂度 67.62
-
-ママのドレス
- 判定：日向坂  乃木坂度 82.18　欅坂度 82.2　日向坂度 82.85
-
-未熟な怒り
- 判定：乃木坂 乃木坂度 76.13　欅坂度 74.83　日向坂度 74.56
-
-耳に落ちる涙
- 判定：乃木坂 乃木坂度 80.97　欅坂度 80.41　日向坂度 79.57
-
-約束の卵
- 判定：欅坂  乃木坂度 92.38　欅坂度 95.42　日向坂度 93.69
-
-やさしさが邪魔をする
- 判定：日向坂  乃木坂度 83.96　欅坂度 83.42　日向坂度 85.14
-
-わずかな光
- 判定：乃木坂 乃木坂度 75.13　欅坂度 74.18　日向坂度 73.59
-
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
-<span class="ansi-red-intense-fg ansi-bold">IndexError</span>                                Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-34-d5eaf1986f23&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">      1</span> <span class="ansi-red-intense-fg ansi-bold">#text_file = open(&#34;Nkekka.txt&#34;, &#34;wt&#34;)</span>
-<span class="ansi-green-fg">      2</span> <span class="ansi-green-intense-fg ansi-bold">for</span> i <span class="ansi-green-intense-fg ansi-bold">in</span> range<span class="ansi-yellow-intense-fg ansi-bold">(</span>len<span class="ansi-yellow-intense-fg ansi-bold">(</span>ADATA<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">2</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-intense-fg ansi-bold">----&gt; 3</span><span class="ansi-yellow-intense-fg ansi-bold">     </span>print<span class="ansi-yellow-intense-fg ansi-bold">(</span>calcNKH<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-yellow-intense-fg ansi-bold">,</span>i<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">      4</span> <span class="ansi-red-intense-fg ansi-bold">#text_file.close()</span>
-
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-30-6a6924064f80&gt;</span> in <span class="ansi-cyan-fg">calcNKH</span><span class="ansi-blue-intense-fg ansi-bold">(typ, p)</span>
-<span class="ansi-green-fg">     24</span>                 i<span class="ansi-yellow-intense-fg ansi-bold">+=</span><span class="ansi-cyan-intense-fg ansi-bold">1</span>
-<span class="ansi-green-fg">     25</span>             cnt<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">;</span>
-<span class="ansi-green-intense-fg ansi-bold">---&gt; 26</span><span class="ansi-yellow-intense-fg ansi-bold">             </span>L<span class="ansi-yellow-intense-fg ansi-bold">=</span>list<span class="ansi-yellow-intense-fg ansi-bold">(</span>set<span class="ansi-yellow-intense-fg ansi-bold">(</span>ADATA<span class="ansi-yellow-intense-fg ansi-bold">[</span>g<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">[</span>i<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">+</span>Now<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">     27</span>             A<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">*</span>len<span class="ansi-yellow-intense-fg ansi-bold">(</span>L<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">     28</span>             <span class="ansi-green-intense-fg ansi-bold">for</span> j <span class="ansi-green-intense-fg ansi-bold">in</span> range<span class="ansi-yellow-intense-fg ansi-bold">(</span>len<span class="ansi-yellow-intense-fg ansi-bold">(</span>ADATA<span class="ansi-yellow-intense-fg ansi-bold">[</span>g<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">[</span>i<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-
-<span class="ansi-red-intense-fg ansi-bold">IndexError</span>: list index out of range</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ADATA</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
@@ -14187,631 +13631,631 @@ My fans
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>I see...
- 判定：乃木坂 乃木坂度 76.91　欅坂度 76.37　日向坂度 75.05
+ 判定：乃木坂 乃木坂度 76.7　欅坂度 76.37　日向坂度 75.05
 
 会いたかったかもしれない
- 判定：乃木坂 乃木坂度 70.37　欅坂度 69.71　日向坂度 69.54
+ 判定：乃木坂 乃木坂度 70.18　欅坂度 69.71　日向坂度 69.54
 
 曖昧
- 判定：日向坂  乃木坂度 86.91　欅坂度 85.76　日向坂度 87.56
+ 判定：日向坂 乃木坂度 86.71　欅坂度 85.76　日向坂度 87.56
 
 Against
- 判定：日向坂  乃木坂度 83.87　欅坂度 83.22　日向坂度 85.01
+ 判定：日向坂 乃木坂度 83.69　欅坂度 83.22　日向坂度 85.01
 
 新しい花粉 ～ミュージカル「見知らぬ世界」より～
- 判定：欅坂  乃木坂度 99.82　欅坂度 105.65　日向坂度 103.17
+ 判定：欅坂　 乃木坂度 99.25　欅坂度 105.65　日向坂度 103.17
 
 新しい世界
- 判定：乃木坂 乃木坂度 80.72　欅坂度 79.38　日向坂度 79.31
+ 判定：乃木坂 乃木坂度 80.48　欅坂度 79.38　日向坂度 79.31
 
 当たり障りのない話
- 判定：乃木坂 乃木坂度 86.19　欅坂度 85.42　日向坂度 85.72
+ 判定：乃木坂 乃木坂度 85.99　欅坂度 85.42　日向坂度 85.72
 
 Another Ghost
- 判定：日向坂  乃木坂度 78.83　欅坂度 79.69　日向坂度 79.74
+ 判定：日向坂 乃木坂度 78.64　欅坂度 79.69　日向坂度 79.74
 
 アナスターシャ
- 判定：乃木坂 乃木坂度 70.85　欅坂度 70.22　日向坂度 69.95
+ 判定：乃木坂 乃木坂度 70.71　欅坂度 70.22　日向坂度 69.95
 
 あなたのために弾きたい
- 判定：乃木坂 乃木坂度 60.01　欅坂度 59.56　日向坂度 58.31
+ 判定：乃木坂 乃木坂度 59.87　欅坂度 59.56　日向坂度 58.31
 
 あの教室
- 判定：乃木坂 乃木坂度 61.6　欅坂度 61.2　日向坂度 59.58
+ 判定：乃木坂 乃木坂度 61.46　欅坂度 61.2　日向坂度 59.58
 
 あの日 僕は咄嗟に嘘をついた
- 判定：乃木坂 乃木坂度 72.37　欅坂度 70.92　日向坂度 70.03
+ 判定：乃木坂 乃木坂度 72.21　欅坂度 70.92　日向坂度 70.03
 
 Am I Loving?
- 判定：欅坂  乃木坂度 88.11　欅坂度 88.82　日向坂度 88.71
+ 判定：欅坂　 乃木坂度 87.81　欅坂度 88.82　日向坂度 88.71
 
 あらかじめ語られるロマンス
- 判定：欅坂  乃木坂度 87.03　欅坂度 90.88　日向坂度 87.45
+ 判定：欅坂　 乃木坂度 86.7　欅坂度 90.88　日向坂度 87.45
 
 ありがちな恋愛
- 判定：乃木坂 乃木坂度 78.53　欅坂度 77.34　日向坂度 77.71
+ 判定：乃木坂 乃木坂度 78.32　欅坂度 77.34　日向坂度 77.71
 
 アンダー
- 判定：欅坂  乃木坂度 60.28　欅坂度 60.88　日向坂度 58.43
+ 判定：欅坂　 乃木坂度 60.13　欅坂度 60.88　日向坂度 58.43
 
 あんなに好きだったのに…
- 判定：欅坂  乃木坂度 90.14　欅坂度 91.75　日向坂度 90.81
+ 判定：欅坂　 乃木坂度 89.81　欅坂度 91.75　日向坂度 90.81
 
 意外BREAK
- 判定：乃木坂 乃木坂度 82.37　欅坂度 81.43　日向坂度 81.23
+ 判定：乃木坂 乃木坂度 82.14　欅坂度 81.43　日向坂度 81.23
 
 行くあてのない僕たち
- 判定：日向坂  乃木坂度 89.12　欅坂度 89.4　日向坂度 89.75
+ 判定：日向坂 乃木坂度 88.91　欅坂度 89.4　日向坂度 89.75
 
 いつかできるから今日できる
- 判定：日向坂  乃木坂度 83.95　欅坂度 84.25　日向坂度 84.55
+ 判定：日向坂 乃木坂度 83.71　欅坂度 84.25　日向坂度 84.55
 
 命の真実 ミュージカル「林檎売りとカメムシ」
- 判定：欅坂  乃木坂度 88.97　欅坂度 89.93　日向坂度 89.72
+ 判定：欅坂　 乃木坂度 88.68　欅坂度 89.93　日向坂度 89.72
 
 命は美しい
- 判定：乃木坂 乃木坂度 69.41　欅坂度 68.29　日向坂度 67.94
+ 判定：乃木坂 乃木坂度 69.22　欅坂度 68.29　日向坂度 67.94
 
 今、話したい誰かがいる
- 判定：欅坂  乃木坂度 91.77　欅坂度 95.69　日向坂度 92.85
+ 判定：欅坂　 乃木坂度 91.31　欅坂度 95.69　日向坂度 92.85
 
 インフルエンサー
- 判定：欅坂  乃木坂度 94.85　欅坂度 100.36　日向坂度 97.55
+ 判定：欅坂　 乃木坂度 94.25　欅坂度 100.36　日向坂度 97.55
 
 失いたくないから
- 判定：乃木坂 乃木坂度 82.27　欅坂度 81.71　日向坂度 80.33
+ 判定：乃木坂 乃木坂度 82.06　欅坂度 81.71　日向坂度 80.33
 
 自惚れビーチ
- 判定：欅坂  乃木坂度 90.33　欅坂度 91.17　日向坂度 91.03
+ 判定：欅坂　 乃木坂度 90.07　欅坂度 91.17　日向坂度 91.03
 
 生まれたままで
- 判定：乃木坂 乃木坂度 76.48　欅坂度 75.96　日向坂度 75.94
+ 判定：乃木坂 乃木坂度 76.32　欅坂度 75.96　日向坂度 75.94
 
 おいでシャンプー
- 判定：乃木坂 乃木坂度 61.7　欅坂度 61.46　日向坂度 59.68
+ 判定：乃木坂 乃木坂度 61.57　欅坂度 61.46　日向坂度 59.68
 
 狼に口笛を
- 判定：乃木坂 乃木坂度 51.65　欅坂度 51.48　日向坂度 49.74
+ 判定：乃木坂 乃木坂度 51.51　欅坂度 51.48　日向坂度 49.74
 
 音が出ないギター
- 判定：乃木坂 乃木坂度 88.35　欅坂度 87.23　日向坂度 86.58
+ 判定：乃木坂 乃木坂度 88.15　欅坂度 87.23　日向坂度 86.58
 
 大人への近道
- 判定：欅坂  乃木坂度 92.1　欅坂度 94.05　日向坂度 93.7
+ 判定：欅坂　 乃木坂度 91.78　欅坂度 94.05　日向坂度 93.7
 
 オフショアガール
- 判定：日向坂  乃木坂度 84.37　欅坂度 85.21　日向坂度 85.38
+ 判定：日向坂 乃木坂度 84.18　欅坂度 85.21　日向坂度 85.38
 
 思い出ファースト
- 判定：乃木坂 乃木坂度 79.02　欅坂度 77.6　日向坂度 77.23
+ 判定：乃木坂 乃木坂度 78.76　欅坂度 77.6　日向坂度 77.23
 
 女は一人じゃ眠れない
- 判定：乃木坂 乃木坂度 77.84　欅坂度 75.91　日向坂度 76.67
+ 判定：乃木坂 乃木坂度 77.59　欅坂度 75.91　日向坂度 76.67
 
 海流の島よ
- 判定：乃木坂 乃木坂度 55.96　欅坂度 55.72　日向坂度 53.87
+ 判定：乃木坂 乃木坂度 55.84　欅坂度 55.72　日向坂度 53.87
 
 帰り道は遠回りしたくなる
- 判定：欅坂  乃木坂度 89.99　欅坂度 96.55　日向坂度 92.44
+ 判定：欅坂　 乃木坂度 89.27　欅坂度 96.55　日向坂度 92.44
 
 かき氷の片想い
- 判定：乃木坂 乃木坂度 79.15　欅坂度 77.71　日向坂度 77.61
+ 判定：乃木坂 乃木坂度 78.92　欅坂度 77.71　日向坂度 77.61
 
 革命の馬
- 判定：乃木坂 乃木坂度 86.32　欅坂度 84.99　日向坂度 85.47
+ 判定：乃木坂 乃木坂度 86.07　欅坂度 84.99　日向坂度 85.47
 
 硬い殻のように抱きしめたい
- 判定：乃木坂 乃木坂度 58.25　欅坂度 57.85　日向坂度 56.02
+ 判定：乃木坂 乃木坂度 58.13　欅坂度 57.85　日向坂度 56.02
 
 滑走路
- 判定：欅坂  乃木坂度 91.61　欅坂度 91.82　日向坂度 90.56
+ 判定：欅坂　 乃木坂度 91.34　欅坂度 91.82　日向坂度 90.56
 
 悲しみの忘れ方
- 判定：乃木坂 乃木坂度 82.41　欅坂度 81.36　日向坂度 80.69
+ 判定：乃木坂 乃木坂度 82.16　欅坂度 81.36　日向坂度 80.69
 
 環状六号線
- 判定：日向坂  乃木坂度 78.91　欅坂度 79.27　日向坂度 79.47
+ 判定：日向坂 乃木坂度 78.76　欅坂度 79.27　日向坂度 79.47
 
 ガールズルール
- 判定：乃木坂 乃木坂度 85.14　欅坂度 85.13　日向坂度 85.12
+ 判定：欅坂　 乃木坂度 84.96　欅坂度 85.13　日向坂度 85.12
 
 キスの手裏剣
- 判定：乃木坂 乃木坂度 81.26　欅坂度 80.24　日向坂度 80.13
+ 判定：乃木坂 乃木坂度 81.01　欅坂度 80.24　日向坂度 80.13
 
 きっかけ
- 判定：日向坂  乃木坂度 90.74　欅坂度 91.9　日向坂度 92.13
+ 判定：日向坂 乃木坂度 90.4　欅坂度 91.9　日向坂度 92.13
 
 気づいたら片想い
- 判定：欅坂  乃木坂度 96.25　欅坂度 102.4　日向坂度 99.69
+ 判定：欅坂　 乃木坂度 95.6　欅坂度 102.4　日向坂度 99.69
 
 君が扇いでくれた
- 判定：乃木坂 乃木坂度 69.06　欅坂度 68.22　日向坂度 67.1
+ 判定：乃木坂 乃木坂度 68.86　欅坂度 68.22　日向坂度 67.1
 
 君に贈る花がない
- 判定：欅坂  乃木坂度 92.28　欅坂度 94.14　日向坂度 92.62
+ 判定：欅坂　 乃木坂度 92.06　欅坂度 94.14　日向坂度 92.62
 
 君の名は希望
- 判定：日向坂  乃木坂度 94.0　欅坂度 93.09　日向坂度 94.1
+ 判定：日向坂 乃木坂度 93.68　欅坂度 93.09　日向坂度 94.1
 
 君は僕と会わない方がよかったのかな
- 判定：日向坂  乃木坂度 84.78　欅坂度 85.46　日向坂度 85.53
+ 判定：日向坂 乃木坂度 84.55　欅坂度 85.46　日向坂度 85.53
 
 キャラバンは眠らない
- 判定：乃木坂 乃木坂度 71.51　欅坂度 70.33　日向坂度 69.48
+ 判定：乃木坂 乃木坂度 71.36　欅坂度 70.33　日向坂度 69.48
 
 急斜面
- 判定：乃木坂 乃木坂度 72.9　欅坂度 71.78　日向坂度 71.04
+ 判定：乃木坂 乃木坂度 72.73　欅坂度 71.78　日向坂度 71.04
 
 空気感
- 判定：日向坂  乃木坂度 80.96　欅坂度 81.23　日向坂度 81.78
+ 判定：日向坂 乃木坂度 80.82　欅坂度 81.23　日向坂度 81.78
 
 口約束
- 判定：欅坂  乃木坂度 89.61　欅坂度 90.16　日向坂度 89.53
+ 判定：欅坂　 乃木坂度 89.41　欅坂度 90.16　日向坂度 89.53
 
 雲になればいい
- 判定：欅坂  乃木坂度 94.03　欅坂度 96.35　日向坂度 94.71
+ 判定：欅坂　 乃木坂度 93.75　欅坂度 96.35　日向坂度 94.71
 
 偶然を言い訳にして
- 判定：日向坂  乃木坂度 83.46　欅坂度 83.57　日向坂度 84.82
+ 判定：日向坂 乃木坂度 83.33　欅坂度 83.57　日向坂度 84.82
 
 ぐるぐるカーテン
- 判定：乃木坂 乃木坂度 76.96　欅坂度 75.75　日向坂度 74.96
+ 判定：乃木坂 乃木坂度 76.78　欅坂度 75.75　日向坂度 74.96
 
 傾斜する
- 判定：乃木坂 乃木坂度 69.2　欅坂度 68.56　日向坂度 67.98
+ 判定：乃木坂 乃木坂度 69.01　欅坂度 68.56　日向坂度 67.98
 
 光合成希望
- 判定：日向坂  乃木坂度 78.16　欅坂度 78.26　日向坂度 78.8
+ 判定：日向坂 乃木坂度 78.05　欅坂度 78.26　日向坂度 78.8
 
 コウモリよ
- 判定：乃木坂 乃木坂度 54.92　欅坂度 54.55　日向坂度 53.02
+ 判定：乃木坂 乃木坂度 54.77　欅坂度 54.55　日向坂度 53.02
 
 告白の順番
- 判定：乃木坂 乃木坂度 74.77　欅坂度 73.99　日向坂度 73.02
+ 判定：乃木坂 乃木坂度 74.57　欅坂度 73.99　日向坂度 73.02
 
 ここじゃないどこか
- 判定：欅坂  乃木坂度 45.95　欅坂度 46.1　日向坂度 44.23
+ 判定：欅坂　 乃木坂度 45.83　欅坂度 46.1　日向坂度 44.23
 
 ここにいる理由
- 判定：乃木坂 乃木坂度 71.64　欅坂度 70.67　日向坂度 70.06
+ 判定：乃木坂 乃木坂度 71.44　欅坂度 70.67　日向坂度 70.06
 
 心の薬
- 判定：欅坂  乃木坂度 67.2　欅坂度 67.27　日向坂度 65.07
+ 判定：欅坂　 乃木坂度 67.08　欅坂度 67.27　日向坂度 65.07
 
 心のモノローグ
- 判定：日向坂  乃木坂度 83.51　欅坂度 83.74　日向坂度 83.8
+ 判定：日向坂 乃木坂度 83.31　欅坂度 83.74　日向坂度 83.8
 
 言霊砲
- 判定：欅坂  乃木坂度 97.25　欅坂度 102.45　日向坂度 98.78
+ 判定：欅坂　 乃木坂度 96.81　欅坂度 102.45　日向坂度 98.78
 
 孤独兄弟
- 判定：乃木坂 乃木坂度 79.2　欅坂度 78.58　日向坂度 78.22
+ 判定：乃木坂 乃木坂度 79.05　欅坂度 78.58　日向坂度 78.22
 
 孤独な青空
- 判定：乃木坂 乃木坂度 76.03　欅坂度 74.85　日向坂度 74.28
+ 判定：乃木坂 乃木坂度 75.84　欅坂度 74.85　日向坂度 74.28
 
 転がった鐘を鳴らせ！
- 判定：日向坂  乃木坂度 87.22　欅坂度 87.7　日向坂度 88.9
+ 判定：日向坂 乃木坂度 87.09　欅坂度 87.7　日向坂度 88.9
 
 ごめんね、スムージー
- 判定：欅坂  乃木坂度 91.06　欅坂度 94.59　日向坂度 91.43
+ 判定：欅坂　 乃木坂度 90.66　欅坂度 94.59　日向坂度 91.43
 
 ごめんね ずっと…
- 判定：乃木坂 乃木坂度 68.96　欅坂度 68.87　日向坂度 67.2
+ 判定：欅坂　 乃木坂度 68.83　欅坂度 68.87　日向坂度 67.2
 
 ゴルゴンゾーラ
- 判定：欅坂  乃木坂度 93.9　欅坂度 97.27　日向坂度 94.85
+ 判定：欅坂　 乃木坂度 93.48　欅坂度 97.27　日向坂度 94.85
 
 サイコキネシスの可能性
- 判定：乃木坂 乃木坂度 77.11　欅坂度 76.65　日向坂度 75.61
+ 判定：乃木坂 乃木坂度 76.92　欅坂度 76.65　日向坂度 75.61
 
 魚たちのLOVE SONG
- 判定：乃木坂 乃木坂度 78.45　欅坂度 77.39　日向坂度 77.13
+ 判定：乃木坂 乃木坂度 78.27　欅坂度 77.39　日向坂度 77.13
 
 さゆりんご募集中
- 判定：乃木坂 乃木坂度 68.69　欅坂度 68.25　日向坂度 66.67
+ 判定：乃木坂 乃木坂度 68.55　欅坂度 68.25　日向坂度 66.67
 
 サヨナラ Stay with me
- 判定：乃木坂 乃木坂度 60.94　欅坂度 60.31　日向坂度 58.85
+ 判定：乃木坂 乃木坂度 60.77　欅坂度 60.31　日向坂度 58.85
 
 サヨナラの意味
- 判定：欅坂  乃木坂度 95.31　欅坂度 96.86　日向坂度 95.45
+ 判定：欅坂　 乃木坂度 95.02　欅坂度 96.86　日向坂度 95.45
 
 三角の空き地
- 判定：日向坂  乃木坂度 86.12　欅坂度 86.52　日向坂度 87.58
+ 判定：日向坂 乃木坂度 86.0　欅坂度 86.52　日向坂度 87.58
 
 三番目の風
- 判定：欅坂  乃木坂度 98.34　欅坂度 101.11　日向坂度 99.61
+ 判定：欅坂　 乃木坂度 98.01　欅坂度 101.11　日向坂度 99.61
 
 しあわせの保護色
- 判定：乃木坂 乃木坂度 67.66　欅坂度 66.85　日向坂度 66.0
+ 判定：乃木坂 乃木坂度 67.48　欅坂度 66.85　日向坂度 66.0
 
 嫉妬の権利
- 判定：日向坂  乃木坂度 87.99　欅坂度 87.54　日向坂度 88.09
+ 判定：日向坂 乃木坂度 87.78　欅坂度 87.54　日向坂度 88.09
 
 失恋お掃除人
- 判定：欅坂  乃木坂度 106.65　欅坂度 116.87　日向坂度 115.6
+ 判定：欅坂　 乃木坂度 105.9　欅坂度 116.87　日向坂度 115.6
 
 失恋したら、顔を洗え！
- 判定：乃木坂 乃木坂度 69.74　欅坂度 69.59　日向坂度 68.1
+ 判定：欅坂　 乃木坂度 69.56　欅坂度 69.59　日向坂度 68.1
 
 渋谷ブルース
- 判定：日向坂  乃木坂度 83.17　欅坂度 82.2　日向坂度 84.0
+ 判定：日向坂 乃木坂度 83.02　欅坂度 82.2　日向坂度 84.0
 
 シャキイズム
- 判定：乃木坂 乃木坂度 85.74　欅坂度 84.79　日向坂度 85.38
+ 判定：乃木坂 乃木坂度 85.59　欅坂度 84.79　日向坂度 85.38
 
 ショパンの嘘つき
- 判定：欅坂  乃木坂度 90.98　欅坂度 98.07　日向坂度 95.84
+ 判定：欅坂　 乃木坂度 90.32　欅坂度 98.07　日向坂度 95.84
 
 知りたいこと
- 判定：欅坂  乃木坂度 73.91　欅坂度 73.96　日向坂度 72.45
+ 判定：欅坂　 乃木坂度 73.76　欅坂度 73.96　日向坂度 72.45
 
 白い雲にのって
- 判定：日向坂  乃木坂度 87.33　欅坂度 87.48　日向坂度 87.73
+ 判定：日向坂 乃木坂度 87.08　欅坂度 87.48　日向坂度 87.73
 
 シンクロニシティ
- 判定：欅坂  乃木坂度 96.28　欅坂度 98.49　日向坂度 97.17
+ 判定：欅坂　 乃木坂度 95.95　欅坂度 98.49　日向坂度 97.17
 
 Sing Out!
- 判定：乃木坂 乃木坂度 79.87　欅坂度 79.08　日向坂度 78.89
+ 判定：乃木坂 乃木坂度 79.67　欅坂度 79.08　日向坂度 78.89
 
 シークレットグラフィティー
- 判定：日向坂  乃木坂度 87.52　欅坂度 87.11　日向坂度 87.94
+ 判定：日向坂 乃木坂度 87.38　欅坂度 87.11　日向坂度 87.94
 
 ジコチューで行こう！
- 判定：乃木坂 乃木坂度 76.41　欅坂度 74.95　日向坂度 74.14
+ 判定：乃木坂 乃木坂度 76.19　欅坂度 74.95　日向坂度 74.14
 
 自分じゃない感じ
- 判定：欅坂  乃木坂度 97.15　欅坂度 102.65　日向坂度 100.86
+ 判定：欅坂　 乃木坂度 96.57　欅坂度 102.65　日向坂度 100.86
 
 自分のこと
- 判定：乃木坂 乃木坂度 77.42　欅坂度 76.25　日向坂度 76.54
+ 判定：乃木坂 乃木坂度 77.17　欅坂度 76.25　日向坂度 76.54
 
 じゃあね。
- 判定：欅坂  乃木坂度 95.86　欅坂度 97.78　日向坂度 97.42
+ 判定：欅坂　 乃木坂度 95.66　欅坂度 97.78　日向坂度 97.42
 
 13日の金曜日
- 判定：日向坂  乃木坂度 90.71　欅坂度 91.17　日向坂度 91.31
+ 判定：日向坂 乃木坂度 90.41　欅坂度 91.17　日向坂度 91.31
 
 自由の彼方
- 判定：乃木坂 乃木坂度 82.04　欅坂度 80.71　日向坂度 80.5
+ 判定：乃木坂 乃木坂度 81.8　欅坂度 80.71　日向坂度 80.5
 
 人生を考えたくなる
- 判定：乃木坂 乃木坂度 78.51　欅坂度 76.46　日向坂度 76.46
+ 判定：乃木坂 乃木坂度 78.27　欅坂度 76.46　日向坂度 76.46
 
 スカイダイビング
- 判定：欅坂  乃木坂度 59.8　欅坂度 60.2　日向坂度 57.5
+ 判定：欅坂　 乃木坂度 59.66　欅坂度 60.2　日向坂度 57.5
 
 スカウトマン
- 判定：乃木坂 乃木坂度 67.99　欅坂度 67.92　日向坂度 66.64
+ 判定：欅坂　 乃木坂度 67.8　欅坂度 67.92　日向坂度 66.64
 
 隙間
- 判定：日向坂  乃木坂度 89.69　欅坂度 89.82　日向坂度 90.6
+ 判定：日向坂 乃木坂度 89.49　欅坂度 89.82　日向坂度 90.6
 
 Threefold choice
- 判定：乃木坂 乃木坂度 77.26　欅坂度 75.97　日向坂度 75.47
+ 判定：乃木坂 乃木坂度 77.09　欅坂度 75.97　日向坂度 75.47
 
 制服のマネキン
- 判定：日向坂  乃木坂度 81.83　欅坂度 81.62　日向坂度 83.42
+ 判定：日向坂 乃木坂度 81.7　欅坂度 81.62　日向坂度 83.42
 
 制服を脱いでサヨナラを…
- 判定：欅坂  乃木坂度 92.64　欅坂度 99.65　日向坂度 98.26
+ 判定：欅坂　 乃木坂度 91.9　欅坂度 99.65　日向坂度 98.26
 
 世界中の隣人よ
- 判定：乃木坂 乃木坂度 74.06　欅坂度 72.83　日向坂度 72.49
+ 判定：乃木坂 乃木坂度 73.87　欅坂度 72.83　日向坂度 72.49
 
 世界で一番 孤独なLover
- 判定：欅坂  乃木坂度 91.38　欅坂度 94.83　日向坂度 92.02
+ 判定：欅坂　 乃木坂度 91.11　欅坂度 94.83　日向坂度 92.02
 
 せっかちなかたつむり
- 判定：日向坂  乃木坂度 95.34　欅坂度 95.94　日向坂度 96.52
+ 判定：日向坂 乃木坂度 95.06　欅坂度 95.94　日向坂度 96.52
 
 設定温度
- 判定：乃木坂 乃木坂度 69.23　欅坂度 69.05　日向坂度 66.98
+ 判定：乃木坂 乃木坂度 69.08　欅坂度 69.05　日向坂度 66.98
 
 扇風機
- 判定：乃木坂 乃木坂度 73.34　欅坂度 71.99　日向坂度 70.84
+ 判定：乃木坂 乃木坂度 73.15　欅坂度 71.99　日向坂度 70.84
 
 その先の出口
- 判定：乃木坂 乃木坂度 85.33　欅坂度 84.3　日向坂度 85.04
+ 判定：乃木坂 乃木坂度 85.09　欅坂度 84.3　日向坂度 85.04
 
 その女
- 判定：欅坂  乃木坂度 97.05　欅坂度 101.13　日向坂度 98.88
+ 判定：欅坂　 乃木坂度 96.53　欅坂度 101.13　日向坂度 98.88
 
 空扉
- 判定：乃木坂 乃木坂度 74.32　欅坂度 73.26　日向坂度 73.17
+ 判定：乃木坂 乃木坂度 74.09　欅坂度 73.26　日向坂度 73.17
 
 そんなバカな…
- 判定：日向坂  乃木坂度 84.48　欅坂度 84.32　日向坂度 85.15
+ 判定：日向坂 乃木坂度 84.29　欅坂度 84.32　日向坂度 85.15
 
 太陽に口説かれて
- 判定：日向坂  乃木坂度 89.25　欅坂度 89.6　日向坂度 89.73
+ 判定：日向坂 乃木坂度 89.02　欅坂度 89.6　日向坂度 89.73
 
 太陽ノック
- 判定：乃木坂 乃木坂度 59.94　欅坂度 59.62　日向坂度 57.91
+ 判定：乃木坂 乃木坂度 59.77　欅坂度 59.62　日向坂度 57.91
 
 立ち直り中
- 判定：日向坂  乃木坂度 85.28　欅坂度 85.04　日向坂度 86.89
+ 判定：日向坂 乃木坂度 85.12　欅坂度 85.04　日向坂度 86.89
 
 大嫌いなはずだった。
- 判定：欅坂  乃木坂度 93.88　欅坂度 95.93　日向坂度 95.08
+ 判定：欅坂　 乃木坂度 93.6　欅坂度 95.93　日向坂度 95.08
 
 誰かは味方
- 判定：乃木坂 乃木坂度 75.69　欅坂度 74.31　日向坂度 73.57
+ 判定：乃木坂 乃木坂度 75.54　欅坂度 74.31　日向坂度 73.57
 
 誰よりそばにいたい
- 判定：日向坂  乃木坂度 86.23　欅坂度 86.74　日向坂度 87.25
+ 判定：日向坂 乃木坂度 86.1　欅坂度 86.74　日向坂度 87.25
 
 ダンケシェーン
- 判定：乃木坂 乃木坂度 55.63　欅坂度 55.38　日向坂度 54.19
+ 判定：乃木坂 乃木坂度 55.52　欅坂度 55.38　日向坂度 54.19
 
 地球が丸いなら
- 判定：乃木坂 乃木坂度 71.89　欅坂度 71.14　日向坂度 70.14
+ 判定：乃木坂 乃木坂度 71.72　欅坂度 71.14　日向坂度 70.14
 
 月の大きさ
- 判定：乃木坂 乃木坂度 81.78　欅坂度 80.21　日向坂度 79.18
+ 判定：乃木坂 乃木坂度 81.49　欅坂度 80.21　日向坂度 79.18
 
 つづく
- 判定：乃木坂 乃木坂度 54.84　欅坂度 53.4　日向坂度 52.15
+ 判定：乃木坂 乃木坂度 54.7　欅坂度 53.4　日向坂度 52.15
 
 強がる蕾
- 判定：乃木坂 乃木坂度 78.99　欅坂度 77.53　日向坂度 77.77
+ 判定：乃木坂 乃木坂度 78.81　欅坂度 77.53　日向坂度 77.77
 
 釣り堀
- 判定：日向坂  乃木坂度 84.28　欅坂度 84.35　日向坂度 84.5
+ 判定：日向坂 乃木坂度 84.1　欅坂度 84.35　日向坂度 84.5
 
 低体温のキス
- 判定：乃木坂 乃木坂度 67.55　欅坂度 66.72　日向坂度 65.11
+ 判定：乃木坂 乃木坂度 67.33　欅坂度 66.72　日向坂度 65.11
 
 Tender days
- 判定：乃木坂 乃木坂度 62.63　欅坂度 62.52　日向坂度 60.65
+ 判定：欅坂　 乃木坂度 62.49　欅坂度 62.52　日向坂度 60.65
 
 でこぴん
- 判定：欅坂  乃木坂度 94.72　欅坂度 96.07　日向坂度 95.81
+ 判定：欅坂　 乃木坂度 94.42　欅坂度 96.07　日向坂度 95.81
 
 吐息のメソッド
- 判定：乃木坂 乃木坂度 66.84　欅坂度 66.58　日向坂度 65.65
+ 判定：乃木坂 乃木坂度 66.71　欅坂度 66.58　日向坂度 65.65
 
 遠回りの愛情
- 判定：乃木坂 乃木坂度 71.34　欅坂度 70.63　日向坂度 69.56
+ 判定：乃木坂 乃木坂度 71.16　欅坂度 70.63　日向坂度 69.56
 
 トキトキメキメキ
- 判定：乃木坂 乃木坂度 84.72　欅坂度 83.57　日向坂度 82.89
+ 判定：乃木坂 乃木坂度 84.52　欅坂度 83.57　日向坂度 82.89
 
 時々 思い出してください
- 判定：日向坂  乃木坂度 88.36　欅坂度 88.91　日向坂度 89.02
+ 判定：日向坂 乃木坂度 88.12　欅坂度 88.91　日向坂度 89.02
 
 図書室の君へ
- 判定：欅坂  乃木坂度 88.01　欅坂度 89.44　日向坂度 89.39
+ 判定：欅坂　 乃木坂度 87.73　欅坂度 89.44　日向坂度 89.39
 
 ～Do my best～じゃ意味はない
- 判定：乃木坂 乃木坂度 73.66　欅坂度 72.59　日向坂度 71.67
+ 判定：乃木坂 乃木坂度 73.42　欅坂度 72.59　日向坂度 71.67
 
 泣いたっていいじゃないか？
- 判定：欅坂  乃木坂度 96.41　欅坂度 101.28　日向坂度 97.39
+ 判定：欅坂　 乃木坂度 96.06　欅坂度 101.28　日向坂度 97.39
 
 ないものねだり
- 判定：乃木坂 乃木坂度 56.63　欅坂度 56.29　日向坂度 55.27
+ 判定：乃木坂 乃木坂度 56.52　欅坂度 56.29　日向坂度 55.27
 
 なぞの落書き
- 判定：乃木坂 乃木坂度 78.91　欅坂度 77.85　日向坂度 77.26
+ 判定：乃木坂 乃木坂度 78.7　欅坂度 77.85　日向坂度 77.26
 
 夏のFree &amp; Easy
- 判定：乃木坂 乃木坂度 68.07　欅坂度 67.71　日向坂度 66.47
+ 判定：乃木坂 乃木坂度 67.9　欅坂度 67.71　日向坂度 66.47
 
 何もできずにそばにいる
- 判定：乃木坂 乃木坂度 74.07　欅坂度 73.02　日向坂度 72.23
+ 判定：乃木坂 乃木坂度 73.89　欅坂度 73.02　日向坂度 72.23
 
 涙がまだ悲しみだった頃
- 判定：日向坂  乃木坂度 82.23　欅坂度 81.5　日向坂度 82.57
+ 判定：日向坂 乃木坂度 82.04　欅坂度 81.5　日向坂度 82.57
 
 何度目の青空か？
- 判定：日向坂  乃木坂度 87.73　欅坂度 87.67　日向坂度 88.24
+ 判定：日向坂 乃木坂度 87.49　欅坂度 87.67　日向坂度 88.24
 
 逃げ水
- 判定：乃木坂 乃木坂度 79.13　欅坂度 77.59　日向坂度 77.11
+ 判定：乃木坂 乃木坂度 78.85　欅坂度 77.59　日向坂度 77.11
 
 日常
- 判定：乃木坂 乃木坂度 80.08　欅坂度 78.74　日向坂度 78.76
+ 判定：乃木坂 乃木坂度 79.85　欅坂度 78.74　日向坂度 78.76
 
 2度目のキスから
- 判定：欅坂  乃木坂度 89.47　欅坂度 89.76　日向坂度 89.16
+ 判定：欅坂　 乃木坂度 89.22　欅坂度 89.76　日向坂度 89.16
 
 人間という楽器
- 判定：乃木坂 乃木坂度 77.4　欅坂度 76.07　日向坂度 75.71
+ 判定：乃木坂 乃木坂度 77.23　欅坂度 76.07　日向坂度 75.71
 
 乃木坂の詩
- 判定：乃木坂 乃木坂度 68.57　欅坂度 68.54　日向坂度 66.82
+ 判定：欅坂　 乃木坂度 68.4　欅坂度 68.54　日向坂度 66.82
 
 のような存在
- 判定：日向坂  乃木坂度 84.07　欅坂度 83.64　日向坂度 84.14
+ 判定：日向坂 乃木坂度 83.87　欅坂度 83.64　日向坂度 84.14
 
 ハウス！
- 判定：欅坂  乃木坂度 84.42　欅坂度 85.29　日向坂度 84.71
+ 判定：欅坂　 乃木坂度 84.19　欅坂度 85.29　日向坂度 84.71
 
 白米様
- 判定：欅坂  乃木坂度 93.01　欅坂度 101.25　日向坂度 98.17
+ 判定：欅坂　 乃木坂度 92.3　欅坂度 101.25　日向坂度 98.17
 
 走れ！Bicycle
- 判定：乃木坂 乃木坂度 76.57　欅坂度 76.13　日向坂度 74.78
+ 判定：乃木坂 乃木坂度 76.41　欅坂度 76.13　日向坂度 74.78
 
 裸足でSummer
- 判定：日向坂  乃木坂度 87.14　欅坂度 87.4　日向坂度 88.42
+ 判定：日向坂 乃木坂度 86.92　欅坂度 87.4　日向坂度 88.42
 
 初恋の人を今でも
- 判定：乃木坂 乃木坂度 64.62　欅坂度 64.33　日向坂度 63.55
+ 判定：乃木坂 乃木坂度 64.43　欅坂度 64.33　日向坂度 63.55
 
 羽根の記憶
- 判定：欅坂  乃木坂度 93.48　欅坂度 99.02　日向坂度 95.2
+ 判定：欅坂　 乃木坂度 92.87　欅坂度 99.02　日向坂度 95.2
 
 遥かなるブータン
- 判定：乃木坂 乃木坂度 64.77　欅坂度 64.76　日向坂度 63.0
+ 判定：欅坂　 乃木坂度 64.61　欅坂度 64.76　日向坂度 63.0
 
 ハルジオンが咲く頃
- 判定：日向坂  乃木坂度 88.01　欅坂度 88.06　日向坂度 89.55
+ 判定：日向坂 乃木坂度 87.87　欅坂度 88.06　日向坂度 89.55
 
 春のメロディー
- 判定：乃木坂 乃木坂度 57.69　欅坂度 57.49　日向坂度 54.95
+ 判定：乃木坂 乃木坂度 57.57　欅坂度 57.49　日向坂度 54.95
 
 バレッタ
- 判定：欅坂  乃木坂度 68.14　欅坂度 68.53　日向坂度 66.14
+ 判定：欅坂　 乃木坂度 67.96　欅坂度 68.53　日向坂度 66.14
 
 左胸の勇気
- 判定：日向坂  乃木坂度 80.54　欅坂度 80.28　日向坂度 82.18
+ 判定：日向坂 乃木坂度 80.38　欅坂度 80.28　日向坂度 82.18
 
 ひと夏の長さより…
- 判定：欅坂  乃木坂度 91.09　欅坂度 91.21　日向坂度 90.66
+ 判定：欅坂　 乃木坂度 90.84　欅坂度 91.21　日向坂度 90.66
 
 人はなぜ走るのか？
- 判定：欅坂  乃木坂度 85.83　欅坂度 86.35　日向坂度 85.83
+ 判定：欅坂　 乃木坂度 85.58　欅坂度 86.35　日向坂度 85.83
 
 ひとりよがり
- 判定：乃木坂 乃木坂度 68.99　欅坂度 68.82　日向坂度 66.72
+ 判定：乃木坂 乃木坂度 68.85　欅坂度 68.82　日向坂度 66.72
 
 ファンタスティック3色パン
- 判定：乃木坂 乃木坂度 78.78　欅坂度 77.82　日向坂度 77.28
+ 判定：乃木坂 乃木坂度 78.58　欅坂度 77.82　日向坂度 77.28
 
 風船は生きている
- 判定：日向坂  乃木坂度 90.76　欅坂度 91.05　日向坂度 91.74
+ 判定：日向坂 乃木坂度 90.54　欅坂度 91.05　日向坂度 91.74
 
 不等号
- 判定：乃木坂 乃木坂度 75.99　欅坂度 74.43　日向坂度 73.84
+ 判定：乃木坂 乃木坂度 75.76　欅坂度 74.43　日向坂度 73.84
 
 不眠症
- 判定：乃木坂 乃木坂度 74.39　欅坂度 73.28　日向坂度 73.2
+ 判定：乃木坂 乃木坂度 74.25　欅坂度 73.28　日向坂度 73.2
 
 ブランコ
- 判定：乃木坂 乃木坂度 84.25　欅坂度 83.23　日向坂度 83.32
+ 判定：乃木坂 乃木坂度 84.02　欅坂度 83.23　日向坂度 83.32
 
 平行線
- 判定：欅坂  乃木坂度 64.14　欅坂度 64.45　日向坂度 62.4
+ 判定：欅坂　 乃木坂度 63.99　欅坂度 64.45　日向坂度 62.4
 
 頬杖をついては眠れない
- 判定：乃木坂 乃木坂度 70.7　欅坂度 70.08　日向坂度 69.04
+ 判定：乃木坂 乃木坂度 70.53　欅坂度 70.08　日向坂度 69.04
 
 他の星から
- 判定：乃木坂 乃木坂度 84.04　欅坂度 83.92　日向坂度 83.73
+ 判定：欅坂　 乃木坂度 83.82　欅坂度 83.92　日向坂度 83.73
 
 忘却と美学
- 判定：日向坂  乃木坂度 87.02　欅坂度 86.48　日向坂度 87.65
+ 判定：日向坂 乃木坂度 86.84　欅坂度 86.48　日向坂度 87.65
 
 僕が行かなきゃ誰が行くんだ？
- 判定：日向坂  乃木坂度 78.51　欅坂度 78.62　日向坂度 79.06
+ 判定：日向坂 乃木坂度 78.27　欅坂度 78.62　日向坂度 79.06
 
 僕がいる場所
- 判定：日向坂  乃木坂度 84.48　欅坂度 84.89　日向坂度 85.95
+ 判定：日向坂 乃木坂度 84.3　欅坂度 84.89　日向坂度 85.95
 
 僕だけの光
- 判定：乃木坂 乃木坂度 71.87　欅坂度 70.31　日向坂度 69.81
+ 判定：乃木坂 乃木坂度 71.68　欅坂度 70.31　日向坂度 69.81
 
 僕の思い込み
- 判定：乃木坂 乃木坂度 78.5　欅坂度 77.16　日向坂度 76.04
+ 判定：乃木坂 乃木坂度 78.25　欅坂度 77.16　日向坂度 76.04
 
 僕のこと、知ってる？
- 判定：欅坂  乃木坂度 82.84　欅坂度 96.78　日向坂度 93.27
+ 判定：欅坂　 乃木坂度 82.17　欅坂度 96.78　日向坂度 93.27
 
 僕の衝動
- 判定：日向坂  乃木坂度 86.49　欅坂度 86.62　日向坂度 87.4
+ 判定：日向坂 乃木坂度 86.35　欅坂度 86.62　日向坂度 87.4
 
 ぼっち党
- 判定：欅坂  乃木坂度 100.03　欅坂度 107.27　日向坂度 105.31
+ 判定：欅坂　 乃木坂度 99.47　欅坂度 107.27　日向坂度 105.31
 
 ボーダー
- 判定：日向坂  乃木坂度 88.16　欅坂度 88.39　日向坂度 89.43
+ 判定：日向坂 乃木坂度 87.95　欅坂度 88.39　日向坂度 89.43
 
 ポピパッパパー
- 判定：欅坂  乃木坂度 72.88　欅坂度 80.21　日向坂度 76.94
+ 判定：欅坂　 乃木坂度 72.37　欅坂度 80.21　日向坂度 76.94
 
 まあいいか？
- 判定：日向坂  乃木坂度 85.49　欅坂度 84.16　日向坂度 85.68
+ 判定：日向坂 乃木坂度 85.3　欅坂度 84.16　日向坂度 85.68
 
 毎日がBrand new day
- 判定：日向坂  乃木坂度 86.26　欅坂度 86.07　日向坂度 87.11
+ 判定：日向坂 乃木坂度 86.1　欅坂度 86.07　日向坂度 87.11
 
 My rule
- 判定：日向坂  乃木坂度 94.32　欅坂度 95.36　日向坂度 95.66
+ 判定：日向坂 乃木坂度 94.03　欅坂度 95.36　日向坂度 95.66
 
 混ざり合うもの
- 判定：乃木坂 乃木坂度 79.86　欅坂度 79.03　日向坂度 79.6
+ 判定：乃木坂 乃木坂度 79.66　欅坂度 79.03　日向坂度 79.6
 
 満月が消えた
- 判定：乃木坂 乃木坂度 58.89　欅坂度 58.48　日向坂度 56.91
+ 判定：乃木坂 乃木坂度 58.74　欅坂度 58.48　日向坂度 56.91
 
 水玉模様
- 判定：乃木坂 乃木坂度 58.84　欅坂度 58.81　日向坂度 56.92
+ 判定：欅坂　 乃木坂度 58.73　欅坂度 58.81　日向坂度 56.92
 
 醜い私
- 判定：乃木坂 乃木坂度 87.33　欅坂度 86.16　日向坂度 86.52
+ 判定：乃木坂 乃木坂度 87.08　欅坂度 86.16　日向坂度 86.52
 
 未来の答え
- 判定：欅坂  乃木坂度 90.24　欅坂度 92.23　日向坂度 91.04
+ 判定：欅坂　 乃木坂度 89.92　欅坂度 92.23　日向坂度 91.04
 
 無口なライオン
- 判定：日向坂  乃木坂度 77.62　欅坂度 78.55　日向坂度 78.73
+ 判定：日向坂 乃木坂度 77.43　欅坂度 78.55　日向坂度 78.73
 
 無表情
- 判定：欅坂  乃木坂度 87.04　欅坂度 87.52　日向坂度 87.42
+ 判定：欅坂　 乃木坂度 86.81　欅坂度 87.52　日向坂度 87.42
 
 もうすぐ～ザンビ伝説～
- 判定：乃木坂 乃木坂度 72.7　欅坂度 71.78　日向坂度 71.99
+ 判定：乃木坂 乃木坂度 72.52　欅坂度 71.78　日向坂度 71.99
 
 もう少しの夢
- 判定：日向坂  乃木坂度 87.36　欅坂度 87.27　日向坂度 88.81
+ 判定：日向坂 乃木坂度 87.23　欅坂度 87.27　日向坂度 88.81
 
 もし君がいなければ
- 判定：乃木坂 乃木坂度 77.78　欅坂度 75.55　日向坂度 75.58
+ 判定：乃木坂 乃木坂度 77.58　欅坂度 75.55　日向坂度 75.58
 
 やさしさとは
- 判定：欅坂  乃木坂度 91.92　欅坂度 93.93　日向坂度 92.71
+ 判定：欅坂　 乃木坂度 91.61　欅坂度 93.93　日向坂度 92.71
 
 やさしさなら間に合ってる
- 判定：乃木坂 乃木坂度 67.36　欅坂度 66.87　日向坂度 66.0
+ 判定：乃木坂 乃木坂度 67.18　欅坂度 66.87　日向坂度 66.0
 
 憂鬱と風船ガム
- 判定：日向坂  乃木坂度 85.76　欅坂度 85.76　日向坂度 86.88
+ 判定：日向坂 乃木坂度 85.63　欅坂度 85.76　日向坂度 86.88
 
 指望遠鏡
- 判定：乃木坂 乃木坂度 63.42　欅坂度 63.23　日向坂度 62.17
+ 判定：乃木坂 乃木坂度 63.3　欅坂度 63.23　日向坂度 62.17
 
 夜明けまで強がらなくてもいい
- 判定：乃木坂 乃木坂度 73.57　欅坂度 72.13　日向坂度 71.87
+ 判定：乃木坂 乃木坂度 73.42　欅坂度 72.13　日向坂度 71.87
 
 欲望のリインカーネーション
- 判定：乃木坂 乃木坂度 54.97　欅坂度 54.94　日向坂度 53.36
+ 判定：欅坂　 乃木坂度 54.85　欅坂度 54.94　日向坂度 53.36
 
 4番目の光
- 判定：乃木坂 乃木坂度 81.36　欅坂度 79.83　日向坂度 78.52
+ 判定：乃木坂 乃木坂度 81.12　欅坂度 79.83　日向坂度 78.52
 
 ライブ神
- 判定：乃木坂 乃木坂度 65.05　欅坂度 64.83　日向坂度 62.85
+ 判定：乃木坂 乃木坂度 64.88　欅坂度 64.83　日向坂度 62.85
 
 流星ディスコティック
- 判定：日向坂  乃木坂度 89.92　欅坂度 90.35　日向坂度 91.13
+ 判定：日向坂 乃木坂度 89.7　欅坂度 90.35　日向坂度 91.13
 
 Rewindあの日
- 判定：乃木坂 乃木坂度 68.74　欅坂度 68.59　日向坂度 66.89
+ 判定：乃木坂 乃木坂度 68.61　欅坂度 68.59　日向坂度 66.89
 
 Route 246
- 判定：乃木坂 乃木坂度 50.97　欅坂度 50.23　日向坂度 48.1
+ 判定：乃木坂 乃木坂度 50.82　欅坂度 50.23　日向坂度 48.1
 
 ロマンスのスタート
- 判定：欅坂  乃木坂度 66.27　欅坂度 67.02　日向坂度 64.94
+ 判定：欅坂　 乃木坂度 66.16　欅坂度 67.02　日向坂度 64.94
 
 ロマンティックいか焼き
- 判定：欅坂  乃木坂度 86.8　欅坂度 87.08　日向坂度 87.02
+ 判定：欅坂　 乃木坂度 86.59　欅坂度 87.08　日向坂度 87.02
 
 路面電車の街
- 判定：日向坂  乃木坂度 95.87　欅坂度 96.15　日向坂度 96.62
+ 判定：日向坂 乃木坂度 95.62　欅坂度 96.15　日向坂度 96.62
 
 別れ際、もっと好きになる
- 判定：欅坂  乃木坂度 86.96　欅坂度 87.19　日向坂度 86.75
+ 判定：欅坂　 乃木坂度 86.67　欅坂度 87.19　日向坂度 86.75
 
 私、起きる。
- 判定：日向坂  乃木坂度 82.22　欅坂度 81.21　日向坂度 82.48
+ 判定：日向坂 乃木坂度 82.02　欅坂度 81.21　日向坂度 82.48
 
 私のために 誰かのために
- 判定：日向坂  乃木坂度 79.07　欅坂度 78.54　日向坂度 79.78
+ 判定：日向坂 乃木坂度 78.91　欅坂度 78.54　日向坂度 79.78
 
 </pre>
 </div>
@@ -14826,11 +14270,11 @@ Route 246
 <pre>
 <span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
 <span class="ansi-red-intense-fg ansi-bold">IndexError</span>                                Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-35-3501959e23e9&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-27-3501959e23e9&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-fg">      1</span> <span class="ansi-green-intense-fg ansi-bold">for</span> i <span class="ansi-green-intense-fg ansi-bold">in</span> range<span class="ansi-yellow-intense-fg ansi-bold">(</span>len<span class="ansi-yellow-intense-fg ansi-bold">(</span>ADATA<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
 <span class="ansi-green-intense-fg ansi-bold">----&gt; 2</span><span class="ansi-yellow-intense-fg ansi-bold">     </span>print<span class="ansi-yellow-intense-fg ansi-bold">(</span>calcNKH<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">,</span>i<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
 
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-30-6a6924064f80&gt;</span> in <span class="ansi-cyan-fg">calcNKH</span><span class="ansi-blue-intense-fg ansi-bold">(typ, p)</span>
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-17-4fcd212e2227&gt;</span> in <span class="ansi-cyan-fg">calcNKH</span><span class="ansi-blue-intense-fg ansi-bold">(typ, p)</span>
 <span class="ansi-green-fg">     24</span>                 i<span class="ansi-yellow-intense-fg ansi-bold">+=</span><span class="ansi-cyan-intense-fg ansi-bold">1</span>
 <span class="ansi-green-fg">     25</span>             cnt<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">;</span>
 <span class="ansi-green-intense-fg ansi-bold">---&gt; 26</span><span class="ansi-yellow-intense-fg ansi-bold">             </span>L<span class="ansi-yellow-intense-fg ansi-bold">=</span>list<span class="ansi-yellow-intense-fg ansi-bold">(</span>set<span class="ansi-yellow-intense-fg ansi-bold">(</span>ADATA<span class="ansi-yellow-intense-fg ansi-bold">[</span>g<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">[</span>i<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">+</span>Now<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
@@ -14844,6 +14288,529 @@ Route 246
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ADATA</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">calcNKH</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>I&#39;m out
+ 判定：乃木坂 乃木坂度 82.78　欅坂度 81.25　日向坂度 81.82
+
+青空が違う
+ 判定：欅坂　 乃木坂度 94.1　欅坂度 95.94　日向坂度 95.07
+
+危なっかしい計画
+ 判定：日向坂 乃木坂度 104.77　欅坂度 117.71　日向坂度 118.45
+
+アンビバレント
+ 判定：欅坂　 乃木坂度 83.65　欅坂度 96.53　日向坂度 96.16
+
+1行だけのエアメール
+ 判定：乃木坂 乃木坂度 55.19　欅坂度 55.02　日向坂度 53.2
+
+イマニミテイロ
+ 判定：日向坂 乃木坂度 90.33　欅坂度 89.08　日向坂度 91.19
+
+永遠の白線
+ 判定：日向坂 乃木坂度 86.37　欅坂度 86.87　日向坂度 88.39
+
+エキセントリック
+ 判定：日向坂 乃木坂度 102.24　欅坂度 112.76　日向坂度 114.54
+
+AM1:27
+ 判定：欅坂　 乃木坂度 94.25　欅坂度 97.29　日向坂度 95.75
+
+おいで夏の境界線
+ 判定：欅坂　 乃木坂度 88.81　欅坂度 92.09　日向坂度 90.28
+
+大人は信じてくれない
+ 判定：乃木坂 乃木坂度 66.37　欅坂度 65.81　日向坂度 64.94
+
+音楽室に片想い
+ 判定：乃木坂 乃木坂度 57.85　欅坂度 57.56　日向坂度 55.79
+
+風に吹かれても
+ 判定：欅坂　 乃木坂度 95.37　欅坂度 101.4　日向坂度 98.05
+
+語るなら未来を…
+ 判定：日向坂 乃木坂度 82.15　欅坂度 82.3　日向坂度 83.29
+
+角を曲がる
+ 判定：欅坂　 乃木坂度 97.94　欅坂度 101.77　日向坂度 99.66
+
+カレイドスコープ
+ 判定：欅坂　 乃木坂度 65.95　欅坂度 66.04　日向坂度 64.55
+
+ガラスを割れ！
+ 判定：欅坂　 乃木坂度 98.04　欅坂度 103.45　日向坂度 101.12
+
+キミガイナイ
+ 判定：欅坂　 乃木坂度 97.75　欅坂度 102.4　日向坂度 99.67
+
+君をもう探さない
+ 判定：欅坂　 乃木坂度 89.04　欅坂度 89.57　日向坂度 89.06
+
+黒い羊
+ 判定：欅坂　 乃木坂度 96.08　欅坂度 109.1　日向坂度 108.79
+
+結局、じゃあねしか言えない
+ 判定：欅坂　 乃木坂度 104.16　欅坂度 109.78　日向坂度 107.84
+
+月曜日の朝、スカートを切られた
+ 判定：日向坂 乃木坂度 88.55　欅坂度 89.26　日向坂度 89.99
+
+ここにない足跡
+ 判定：乃木坂 乃木坂度 78.26　欅坂度 76.89　日向坂度 77.4
+
+コンセントレーション
+ 判定：欅坂　 乃木坂度 91.74　欅坂度 98.05　日向坂度 94.34
+
+こんな整列を誰がさせるのか？
+ 判定：欅坂　 乃木坂度 91.49　欅坂度 93.24　日向坂度 92.94
+
+ごめんね クリスマス
+ 判定：日向坂 乃木坂度 76.73　欅坂度 77.02　日向坂度 77.13
+
+再生する細胞
+ 判定：乃木坂 乃木坂度 66.98　欅坂度 66.45　日向坂度 65.0
+
+最前列へ
+ 判定：乃木坂 乃木坂度 80.03　欅坂度 78.46　日向坂度 79.16
+
+サイレントマジョリティー
+ 判定：日向坂 乃木坂度 80.9　欅坂度 81.79　日向坂度 82.34
+
+砂塵
+ 判定：日向坂 乃木坂度 87.87　欅坂度 87.83　日向坂度 87.96
+
+302号室
+ 判定：日向坂 乃木坂度 83.18　欅坂度 82.6　日向坂度 83.6
+
+渋谷からPARCOが消えた日
+ 判定：乃木坂 乃木坂度 84.1　欅坂度 82.77　日向坂度 83.01
+
+渋谷川
+ 判定：欅坂　 乃木坂度 84.96　欅坂度 88.45　日向坂度 85.79
+
+少女には戻れない
+ 判定：乃木坂 乃木坂度 65.93　欅坂度 65.62　日向坂度 64.51
+
+自分の棺
+ 判定：乃木坂 乃木坂度 64.31　欅坂度 64.05　日向坂度 62.17
+
+10月のプールに飛び込んだ
+ 判定：日向坂 乃木坂度 90.98　欅坂度 91.63　日向坂度 92.19
+
+Student Dance
+ 判定：乃木坂 乃木坂度 70.41　欅坂度 70.08　日向坂度 69.1
+
+制服と太陽
+ 判定：日向坂 乃木坂度 84.15　欅坂度 83.19　日向坂度 85.09
+
+世界には愛しかない
+ 判定：欅坂　 乃木坂度 101.38　欅坂度 105.54　日向坂度 102.9
+
+ゼンマイ仕掛けの夢
+ 判定：乃木坂 乃木坂度 75.02　欅坂度 73.6　日向坂度 73.32
+
+太陽は見上げる人を選ばない
+ 判定：欅坂　 乃木坂度 96.22　欅坂度 97.06　日向坂度 96.75
+
+W-KEYAKIZAKAの詩
+ 判定：日向坂 乃木坂度 86.78　欅坂度 87.2　日向坂度 88.64
+
+誰がその鐘を鳴らすのか？
+ 判定：欅坂　 乃木坂度 99.19　欅坂度 105.01　日向坂度 103.93
+
+チューニング
+ 判定：乃木坂 乃木坂度 73.09　欅坂度 71.94　日向坂度 70.98
+
+沈黙が愛なら
+ 判定：欅坂　 乃木坂度 95.88　欅坂度 98.8　日向坂度 95.65
+
+手を繋いで帰ろうか
+ 判定：欅坂　 乃木坂度 97.04　欅坂度 101.07　日向坂度 98.87
+
+Deadline
+ 判定：乃木坂 乃木坂度 65.78　欅坂度 65.22　日向坂度 63.44
+
+東京タワーはどこから見える?
+ 判定：日向坂 乃木坂度 84.93　欅坂度 83.59　日向坂度 85.23
+
+夏の花は向日葵だけじゃない
+ 判定：乃木坂 乃木坂度 69.24　欅坂度 68.85　日向坂度 67.53
+
+波打ち際を走らないか？
+ 判定：欅坂　 乃木坂度 67.51　欅坂度 67.6　日向坂度 65.52
+
+猫の名前
+ 判定：欅坂　 乃木坂度 97.4　欅坂度 101.8　日向坂度 98.86
+
+乗り遅れたバス
+ 判定：日向坂 乃木坂度 81.66　欅坂度 81.92　日向坂度 82.77
+
+Nobody
+ 判定：乃木坂 乃木坂度 76.18　欅坂度 74.97　日向坂度 75.34
+
+半分の記憶
+ 判定：欅坂　 乃木坂度 91.77　欅坂度 92.0　日向坂度 91.66
+
+バスルームトラベル
+ 判定：欅坂　 乃木坂度 90.26　欅坂度 91.3　日向坂度 91.08
+
+バレエと少年
+ 判定：欅坂　 乃木坂度 66.21　欅坂度 66.3　日向坂度 64.66
+
+日が昇るまで
+ 判定：乃木坂 乃木坂度 73.67　欅坂度 73.07　日向坂度 72.25
+
+否定した未来
+ 判定：乃木坂 乃木坂度 83.37　欅坂度 81.84　日向坂度 82.09
+
+100年待てば
+ 判定：日向坂 乃木坂度 88.6　欅坂度 88.98　日向坂度 89.65
+
+避雷針
+ 判定：日向坂 乃木坂度 108.12　欅坂度 119.18　日向坂度 120.52
+
+ヒールの高さ
+ 判定：乃木坂 乃木坂度 77.99　欅坂度 77.46　日向坂度 76.96
+
+不協和音
+ 判定：欅坂　 乃木坂度 92.32　欅坂度 96.24　日向坂度 93.73
+
+二人セゾン
+ 判定：欅坂　 乃木坂度 92.89　欅坂度 93.37　日向坂度 93.16
+
+Footsteps
+ 判定：欅坂　 乃木坂度 96.04　欅坂度 100.98　日向坂度 98.54
+
+微笑みが悲しい
+ 判定：乃木坂 乃木坂度 75.46　欅坂度 74.66　日向坂度 73.11
+
+僕たちの戦争
+ 判定：日向坂 乃木坂度 92.73　欅坂度 94.66　日向坂度 95.05
+
+ボブディランは返さない
+ 判定：乃木坂 乃木坂度 71.5　欅坂度 70.68　日向坂度 70.56
+
+また会ってください
+ 判定：乃木坂 乃木坂度 83.4　欅坂度 81.92　日向坂度 81.37
+
+未熟な怒り
+ 判定：乃木坂 乃木坂度 75.92　欅坂度 74.83　日向坂度 74.56
+
+耳に落ちる涙
+ 判定：乃木坂 乃木坂度 80.74　欅坂度 80.41　日向坂度 79.57
+
+もう森へ帰ろうか？
+ 判定：乃木坂 乃木坂度 81.0　欅坂度 80.85　日向坂度 80.19
+
+山手線
+ 判定：欅坂　 乃木坂度 63.8　欅坂度 64.52　日向坂度 62.28
+
+夕陽1/3
+ 判定：日向坂 乃木坂度 88.01　欅坂度 85.99　日向坂度 88.04
+
+夜明けの孤独
+ 判定：乃木坂 乃木坂度 56.98　欅坂度 56.39　日向坂度 54.87
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">IndexError</span>                                Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-20-bdf3377c88a3&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">      1</span> text_file <span class="ansi-yellow-intense-fg ansi-bold">=</span> open<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;Nkekka.txt&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#34;wt&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      2</span> <span class="ansi-green-intense-fg ansi-bold">for</span> i <span class="ansi-green-intense-fg ansi-bold">in</span> range<span class="ansi-yellow-intense-fg ansi-bold">(</span>len<span class="ansi-yellow-intense-fg ansi-bold">(</span>ADATA<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 3</span><span class="ansi-yellow-intense-fg ansi-bold">     </span>print<span class="ansi-yellow-intense-fg ansi-bold">(</span>calcNKH<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">2</span><span class="ansi-yellow-intense-fg ansi-bold">,</span>i<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      4</span> <span class="ansi-red-intense-fg ansi-bold">#text_file.close()</span>
+
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-17-4fcd212e2227&gt;</span> in <span class="ansi-cyan-fg">calcNKH</span><span class="ansi-blue-intense-fg ansi-bold">(typ, p)</span>
+<span class="ansi-green-fg">     24</span>                 i<span class="ansi-yellow-intense-fg ansi-bold">+=</span><span class="ansi-cyan-intense-fg ansi-bold">1</span>
+<span class="ansi-green-fg">     25</span>             cnt<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">;</span>
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 26</span><span class="ansi-yellow-intense-fg ansi-bold">             </span>L<span class="ansi-yellow-intense-fg ansi-bold">=</span>list<span class="ansi-yellow-intense-fg ansi-bold">(</span>set<span class="ansi-yellow-intense-fg ansi-bold">(</span>ADATA<span class="ansi-yellow-intense-fg ansi-bold">[</span>g<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">[</span>i<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">+</span>Now<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">     27</span>             A<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">*</span>len<span class="ansi-yellow-intense-fg ansi-bold">(</span>L<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">     28</span>             <span class="ansi-green-intense-fg ansi-bold">for</span> j <span class="ansi-green-intense-fg ansi-bold">in</span> range<span class="ansi-yellow-intense-fg ansi-bold">(</span>len<span class="ansi-yellow-intense-fg ansi-bold">(</span>ADATA<span class="ansi-yellow-intense-fg ansi-bold">[</span>g<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">[</span>i<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+
+<span class="ansi-red-intense-fg ansi-bold">IndexError</span>: list index out of range</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ADATA</span><span class="p">[</span><span class="mi">2</span><span class="p">])):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">calcNKH</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>アザトカワイイ
+ 判定：日向坂 乃木坂度 84.93　欅坂度 85.75　日向坂度 85.89
+
+居心地悪く、大人になった
+ 判定：日向坂 乃木坂度 83.19　欅坂度 83.88　日向坂度 84.39
+
+一番好きだとみんなに言っていた小説のタイトルを思い出せない
+ 判定：欅坂　 乃木坂度 96.0　欅坂度 109.24　日向坂度 104.88
+
+イマニミテイロ
+ 判定：日向坂 乃木坂度 90.33　欅坂度 89.08　日向坂度 91.19
+
+おいで夏の境界線
+ 判定：欅坂　 乃木坂度 88.81　欅坂度 92.09　日向坂度 90.28
+
+男友達だから
+ 判定：日向坂 乃木坂度 82.71　欅坂度 83.18　日向坂度 84.4
+
+川は流れる
+ 判定：欅坂　 乃木坂度 95.02　欅坂度 96.14　日向坂度 94.83
+
+期待していない自分
+ 判定：乃木坂 乃木坂度 71.54　欅坂度 70.56　日向坂度 70.99
+
+キツネ
+ 判定：日向坂 乃木坂度 89.99　欅坂度 89.81　日向坂度 90.37
+
+君に話しておきたいこと
+ 判定：日向坂 乃木坂度 87.29　欅坂度 88.59　日向坂度 88.81
+
+君のため何ができるだろう
+ 判定：欅坂　 乃木坂度 92.7　欅坂度 99.53　日向坂度 96.65
+
+キュン
+ 判定：欅坂　 乃木坂度 96.91　欅坂度 104.71　日向坂度 100.84
+
+キレイになりたい
+ 判定：欅坂　 乃木坂度 87.32　欅坂度 87.98　日向坂度 87.97
+
+Cage
+ 判定：欅坂　 乃木坂度 95.93　欅坂度 109.85　日向坂度 104.27
+
+この夏をジャムにしよう
+ 判定：欅坂　 乃木坂度 95.35　欅坂度 96.28　日向坂度 95.02
+
+こんな整列を誰がさせるのか？
+ 判定：欅坂　 乃木坂度 91.49　欅坂度 93.24　日向坂度 92.94
+
+こんなに好きになっちゃっていいの？
+ 判定：欅坂　 乃木坂度 88.04　欅坂度 95.93　日向坂度 92.65
+
+最前列へ
+ 判定：乃木坂 乃木坂度 80.03　欅坂度 78.46　日向坂度 79.16
+
+三輪車に乗りたい
+ 判定：欅坂　 乃木坂度 85.79　欅坂度 86.09　日向坂度 85.71
+
+車輪が軋むように君が泣く
+ 判定：乃木坂 乃木坂度 74.52　欅坂度 72.77　日向坂度 72.62
+
+See Through
+ 判定：欅坂　 乃木坂度 92.93　欅坂度 102.69　日向坂度 101.01
+
+JOYFUL LOVE
+ 判定：日向坂 乃木坂度 88.87　欅坂度 89.92　日向坂度 89.97
+
+好きということは…
+ 判定：日向坂 乃木坂度 89.31　欅坂度 89.49　日向坂度 89.59
+
+青春の馬
+ 判定：欅坂　 乃木坂度 98.05　欅坂度 104.34　日向坂度 100.91
+
+線香花火が消えるまで
+ 判定：欅坂　 乃木坂度 98.29　欅坂度 102.92　日向坂度 99.27
+
+それでも歩いてる
+ 判定：欅坂　 乃木坂度 95.99　欅坂度 97.0　日向坂度 96.09
+
+ソンナコトナイヨ
+ 判定：欅坂　 乃木坂度 86.98　欅坂度 88.19　日向坂度 87.77
+
+ただがむしゃらに
+ 判定：乃木坂 乃木坂度 70.19　欅坂度 69.01　日向坂度 67.97
+
+抱きしめてやる
+ 判定：乃木坂 乃木坂度 78.14　欅坂度 77.26　日向坂度 77.92
+
+Dash&amp;Rush
+ 判定：欅坂　 乃木坂度 94.89　欅坂度 99.34　日向坂度 95.94
+
+誰よりも高く跳べ!
+ 判定：日向坂 乃木坂度 89.23　欅坂度 89.52　日向坂度 90.15
+
+沈黙が愛なら
+ 判定：欅坂　 乃木坂度 95.88　欅坂度 98.61　日向坂度 95.65
+
+沈黙した恋人よ
+ 判定：日向坂 乃木坂度 90.93　欅坂度 91.66　日向坂度 92.02
+
+ときめき草
+ 判定：日向坂 乃木坂度 81.46　欅坂度 80.93　日向坂度 81.61
+
+どうして雨だと言ったんだろう？
+ 判定：欅坂　 乃木坂度 97.44　欅坂度 102.5　日向坂度 98.77
+
+ドレミソラシド
+ 判定：欅坂　 乃木坂度 90.78　欅坂度 106.1　日向坂度 99.7
+
+ナゼー
+ 判定：欅坂　 乃木坂度 90.36　欅坂度 93.86　日向坂度 91.14
+
+夏色のミュール
+ 判定：乃木坂 乃木坂度 76.0　欅坂度 74.89　日向坂度 73.49
+
+ノックをするな！
+ 判定：日向坂 乃木坂度 89.0　欅坂度 89.05　日向坂度 90.32
+
+NO WAR in the future
+ 判定：乃木坂 乃木坂度 81.46　欅坂度 80.69　日向坂度 80.92
+
+ハッピーオーラ
+ 判定：乃木坂 乃木坂度 72.26　欅坂度 71.53　日向坂度 70.59
+
+ハロウィンのカボチャが割れた
+ 判定：欅坂　 乃木坂度 92.03　欅坂度 97.25　日向坂度 93.44
+
+半分の記憶
+ 判定：欅坂　 乃木坂度 91.77　欅坂度 92.0　日向坂度 91.66
+
+日向坂
+ 判定：日向坂 乃木坂度 87.07　欅坂度 87.06　日向坂度 87.81
+
+ひらがなけやき
+ 判定：欅坂　 乃木坂度 62.53　欅坂度 62.76　日向坂度 60.61
+
+ひらがなで恋したい
+ 判定：欅坂　 乃木坂度 90.68　欅坂度 91.72　日向坂度 91.55
+
+Footsteps
+ 判定：欅坂　 乃木坂度 96.04　欅坂度 100.98　日向坂度 99.98
+
+ホントの時間
+ 判定：欅坂　 乃木坂度 103.61　欅坂度 113.93　日向坂度 109.86
+
+僕たちは付き合っている
+ 判定：欅坂　 乃木坂度 93.49　欅坂度 95.21　日向坂度 94.36
+
+My god
+ 判定：乃木坂 乃木坂度 69.89　欅坂度 69.3　日向坂度 67.97
+
+My fans
+ 判定：欅坂　 乃木坂度 96.78　欅坂度 99.39　日向坂度 97.29
+
+まさか 偶然…
+ 判定：乃木坂 乃木坂度 75.36　欅坂度 73.57　日向坂度 73.22
+
+窓を開けなくても
+ 判定：乃木坂 乃木坂度 70.19　欅坂度 69.36　日向坂度 67.62
+
+ママのドレス
+ 判定：日向坂 乃木坂度 82.03　欅坂度 82.2　日向坂度 82.85
+
+未熟な怒り
+ 判定：乃木坂 乃木坂度 75.92　欅坂度 74.83　日向坂度 74.56
+
+耳に落ちる涙
+ 判定：乃木坂 乃木坂度 80.74　欅坂度 80.41　日向坂度 79.57
+
+約束の卵
+ 判定：欅坂　 乃木坂度 92.14　欅坂度 95.42　日向坂度 93.69
+
+やさしさが邪魔をする
+ 判定：日向坂 乃木坂度 83.81　欅坂度 83.42　日向坂度 85.14
+
+わずかな光
+ 判定：乃木坂 乃木坂度 74.94　欅坂度 74.18　日向坂度 73.59
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">IndexError</span>                                Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-21-d5eaf1986f23&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">      1</span> <span class="ansi-red-intense-fg ansi-bold">#text_file = open(&#34;Nkekka.txt&#34;, &#34;wt&#34;)</span>
+<span class="ansi-green-fg">      2</span> <span class="ansi-green-intense-fg ansi-bold">for</span> i <span class="ansi-green-intense-fg ansi-bold">in</span> range<span class="ansi-yellow-intense-fg ansi-bold">(</span>len<span class="ansi-yellow-intense-fg ansi-bold">(</span>ADATA<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">2</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 3</span><span class="ansi-yellow-intense-fg ansi-bold">     </span>print<span class="ansi-yellow-intense-fg ansi-bold">(</span>calcNKH<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-yellow-intense-fg ansi-bold">,</span>i<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      4</span> <span class="ansi-red-intense-fg ansi-bold">#text_file.close()</span>
+
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-17-4fcd212e2227&gt;</span> in <span class="ansi-cyan-fg">calcNKH</span><span class="ansi-blue-intense-fg ansi-bold">(typ, p)</span>
+<span class="ansi-green-fg">     24</span>                 i<span class="ansi-yellow-intense-fg ansi-bold">+=</span><span class="ansi-cyan-intense-fg ansi-bold">1</span>
+<span class="ansi-green-fg">     25</span>             cnt<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">;</span>
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 26</span><span class="ansi-yellow-intense-fg ansi-bold">             </span>L<span class="ansi-yellow-intense-fg ansi-bold">=</span>list<span class="ansi-yellow-intense-fg ansi-bold">(</span>set<span class="ansi-yellow-intense-fg ansi-bold">(</span>ADATA<span class="ansi-yellow-intense-fg ansi-bold">[</span>g<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">[</span>i<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">+</span>Now<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">     27</span>             A<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">*</span>len<span class="ansi-yellow-intense-fg ansi-bold">(</span>L<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">     28</span>             <span class="ansi-green-intense-fg ansi-bold">for</span> j <span class="ansi-green-intense-fg ansi-bold">in</span> range<span class="ansi-yellow-intense-fg ansi-bold">(</span>len<span class="ansi-yellow-intense-fg ansi-bold">(</span>ADATA<span class="ansi-yellow-intense-fg ansi-bold">[</span>g<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">[</span>i<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+
+<span class="ansi-red-intense-fg ansi-bold">IndexError</span>: list index out of range</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#32080;&#26524;">&#32080;&#26524;<a class="anchor-link" href="#&#32080;&#26524;">&#182;</a></h1><p>まあまあ良さそう</p>
+<p>かなりシンプルな計算と雑な解析のわりにそれっぽいAIができた（っていうことにしておこう）</p>
+<p>まだまだ改善点はあるので時間のある時にやる</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
