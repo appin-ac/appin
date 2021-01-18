@@ -1,7 +1,7 @@
 ﻿@charset "utf-8";
 
 body{
- background-color:#ffffff;
+ background-color:#CECCF6;
  font-size:140%;
  font-family: "メイリオ",Arial;
  font-family: "ヒラギノ角ゴシック",Arial;
@@ -42,7 +42,7 @@ background-color:#0000cc;
     padding: 1% 1%;
     margin: 0 3%;
     color: #2c2c2f;
-    background: #ffdddd;/*背景色*/
+    background: #A19AF6;/*背景色*/
 }
 .box1 p {
     margin: 0; 
@@ -52,7 +52,7 @@ background-color:#0000cc;
     padding: 1% 1%;
     margin: 0 3%;
     color: #2c2c2f;
-    background: #ddffdd;/*背景色*/
+    background: #9AD1F6;/*背景色*/
 }
 .box2 p {
     margin: 0; 
@@ -62,7 +62,7 @@ background-color:#0000cc;
     padding: 1% 1%;
     margin: 0 3%;
     color: #2c2c2f;
-    background: #ddddff;/*背景色*/
+    background: #D49AF6;/*背景色*/
 }
 .box3 p {
     margin: 0; 
